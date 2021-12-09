@@ -119,7 +119,7 @@ class App(QWidget):
 
     def checkControlSum(self, data):
         x = 0
-        for byte_str in data[:6]:
+        for byte_str in range(len(data) - 1):
             x += byte_str
         if (x - 255) - 1 == data[6]:
             return True

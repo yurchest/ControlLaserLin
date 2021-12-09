@@ -1,6 +1,5 @@
-/build
+/build/
+__pycache__/
 /dist
-*.manifest
-/venv_win/
 *.spec
-png/
+/.idea
