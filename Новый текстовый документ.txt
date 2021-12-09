@@ -1,0 +1,4 @@
+pyinstaller --onefile --windowed --clean --icon=icon.ico main2.py
+
+pip install PyQt5-stubs
+pip install PyQt5-tools

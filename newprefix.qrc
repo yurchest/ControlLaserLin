@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>icon.ico</file>
+    <file>png/blue-led-on.png</file>
+    <file>png/green-led-on.png</file>
+    <file>png/led-red-on.png</file>
+    <file>png/offline.png</file>
+    <file>png/online.png</file>
+  </qresource>
+</RCC>
