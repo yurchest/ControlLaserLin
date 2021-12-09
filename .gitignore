@@ -1,0 +1,6 @@
+/build
+/dist
+*.manifest
+/venv_win/
+*.spec
+png/
