@@ -73,7 +73,6 @@ class App(QWidget):
         self.greenText = QColor(111, 189, 100)
         self.yellowText = QColor(255, 100, 0)
         self.blackText = QColor(0, 0, 0)
-        self.SendRead.tx = ''
 
         self.requestModules = True
         self.showDataOnTextEdit = False
@@ -91,11 +90,14 @@ class App(QWidget):
 
     def checkData(self, data):
         if self.checkControlSum(data):
-            self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0,150);border-radius: 20')
+            self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 100);border-radius: 20')
             self.dataBin = functions.strToBin(data)
             self.setLeds()
             if self.showDataOnTextEdit == True:
                 self.w_root.textEdit.append(str(self.dataBin))
+        else:
+            self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0, 100);border-radius: 20')
+
 
     def checkMerr(self, data):
         if data.decode('raw_unicode_escape') == 'OK':
@@ -507,12 +509,15 @@ class App(QWidget):
         return IP
 
     def checkCon(self, data):
-        if data == True:
+        if data:
             self.w_root.label_3.setFixedSize(41, 41)
             self.w_root.label_3.setPixmap(QPixmap(self.NET_ON))
         else:
             self.w_root.label_3.setFixedSize(121, 41)
             self.w_root.label_3.setPixmap(QPixmap(self.NET_OFF))
+            self.w_root.label_63.setText('NO RX DATA')
+            self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0,100);border-radius: 20')
+
 
     def chngMoxaIpPort(self):
         self.ip = self.w_root.lineEdit.text()
@@ -533,7 +538,7 @@ class SendRead(QThread):
 
     def __init__(self, myIp):
         QThread.__init__(self)
-        self.tx = '__init__'
+        self.tx = ''
         self.ip = '__init__'
         self.port = '__init__'
         self.my_ip = myIp
@@ -543,7 +548,7 @@ class SendRead(QThread):
 
         while 1:
             self.msleep(1)
-            if self.tx != '':
+            if self.tx:
                 try:
                     udp_socket = socket(AF_INET, SOCK_DGRAM)
                     adr = (self.ip, self.port)
@@ -554,11 +559,12 @@ class SendRead(QThread):
                     # self.msleep(10)
                     udp_socket.settimeout(0.04)
                     data = functions.ReadMess(udp_socket)[0]
-                    print('TX : ', self.tx)
-                    self.checkData(data)
                     udp_socket.close()
+                    print('RX : ', data)
+                    self.checkData(data)
+
                 except:
-                    self.msleep(40)
+                    # self.msleep(40)
                     print('Send exception')
 
     def checkData(self, data):
