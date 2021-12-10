@@ -121,10 +121,10 @@ class App(QWidget):
         x = 0
         for byte_str in range(len(data) - 1):
             x += byte_str
-        if (x - 255) - 1 == data[6]:
+        if chr(x).encode()[-1] == data[6]:
             return True
         else:
-            return True
+            return False
 
     def changeTextEdit(self):
         if str(self.w_root.tabWidget.currentIndex()) == '0':
