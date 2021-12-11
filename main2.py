@@ -73,6 +73,7 @@ class App(QWidget):
         self.greenText = QColor(111, 189, 100)
         self.yellowText = QColor(255, 100, 0)
         self.blackText = QColor(0, 0, 0)
+        self.clck_ContS = 0
 
         self.requestModules = True
         self.showDataOnTextEdit = False
@@ -90,13 +91,17 @@ class App(QWidget):
 
     def checkData(self, data):
         if self.checkControlSum(data):
-            self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 100);border-radius: 20')
+            self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 150);border-radius: 20')
             self.dataBin = functions.strToBin(data)
             self.setLeds()
             if self.showDataOnTextEdit == True:
                 self.w_root.textEdit.append(str(self.dataBin))
+            self.clck_ContS = 0
         else:
-            self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0, 100);border-radius: 20')
+            self.clck_Conts += 1
+            if self.clck_ContS > 3:
+                self.clck_ContS = 4
+                self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0, 150);border-radius: 20')
 
 
     def checkMerr(self, data):
@@ -516,7 +521,7 @@ class App(QWidget):
             self.w_root.label_3.setFixedSize(121, 41)
             self.w_root.label_3.setPixmap(QPixmap(self.NET_OFF))
             self.w_root.label_63.setText('NO RX DATA')
-            self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0,100);border-radius: 20')
+            self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0,150);border-radius: 20')
 
 
     def chngMoxaIpPort(self):
