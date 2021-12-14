@@ -25,6 +25,8 @@ class App(QWidget):
         self.port = int(self.w_root.lineEdit_2.text())
         self.myIp = self.extract_ip()
 
+        self.requestModules = True
+
         self.SendRead = SendRead(self.myIp)
         self.SendRead.start()
 
@@ -74,7 +76,6 @@ class App(QWidget):
         self.blackText = QColor(0, 0, 0)
         self.clck_ContS = 0
 
-        self.requestModules = True
         self.showDataOnTextEdit = False
 
         self.SendRead.ip = self.ip
@@ -489,7 +490,7 @@ class App(QWidget):
 
     def setTX_E(self):
         self.SendRead.tx = ['#', '\x03', 'E', '\x00']
-        self.requestModules = True
+
 
     def setTX_E_Ustr(self):
         self.SendRead.tx = ['#', '\x03', 'E', '\x01']
@@ -569,7 +570,6 @@ class SendRead(QThread):
                     print('TX : ', self.tx)
                     self.tx = ''
                     # self.msleep(10)
-                    udp_socket.settimeout(0.04)
                     data = functions.ReadMess(udp_socket)[0]
                     udp_socket.close()
                     print('RX : ', data)
@@ -585,8 +585,8 @@ class SendRead(QThread):
             self.out_signal.emit(data)
             self.merr_signal.emit('st'.encode('raw_unicode_escape'))
 
-        elif len(data.decode('raw_unicode_escape')) == 2 and data.decode('raw_unicode_escape')[0] == 'E' or \
-                data.decode('raw_unicode_escape')[0] == 'O':
+
+        elif len(data) == 2 and chr(data[0]) == 'E' or data.decode('raw_unicode_escape') == 'OK':
             self.merr_signal.emit(data)
             print('MERR RX : ', data)
 
@@ -618,8 +618,8 @@ class SendRepeat(QThread):
                 print('RX Repeat : ', data)
                 clck = 0
                 self.checkCon.emit(True)
-                if len(data) > 6 and data.decode('raw_unicode_escape')[0] == '!' and data.decode('raw_unicode_escape')[
-                    1] == '5' and data.decode('raw_unicode_escape')[2] == 'E':
+                if len(data) > 6 and chr(data[0]) == '!' and data[1] == 5 and chr(
+                        data[2]) == 'E':
                     self.out_signal.emit(data)
 
             except:
