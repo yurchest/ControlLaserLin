@@ -48,7 +48,7 @@ def ControlSum(bytebuff):
     x = 0
     for byte_str in bytebuff:
         x += ord(byte_str)
-    result = x and 255
+    result = x
     return chr(result)
 
 

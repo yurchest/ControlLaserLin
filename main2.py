@@ -98,13 +98,13 @@ class App(QWidget):
                 self.requestModules = True
 
     def checkData(self, data):
+        if self.showDataOnTextEdit == True:
+            self.w_root.textEdit.append(str(self.dataBin))
         if self.checkControlSum(data):
             self.w_root.label_63.setText('Control Sum')
             self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 150);border-radius: 20')
             self.dataBin = functions.strToBin(data)
             self.setLeds()
-            if self.showDataOnTextEdit == True:
-                self.w_root.textEdit.append(str(self.dataBin))
             self.clck_ContS = 0
         else:
             self.clck_Conts += 1
@@ -136,7 +136,7 @@ class App(QWidget):
 
     def checkControlSum(self, data):
         x = 0
-        for byte_str in range(len(data) - 1):
+        for byte_str in data[:6]:
             x += byte_str
         if int(bin(x)[-8:].zfill(8), 2) == data[6] :
             return True
@@ -615,6 +615,7 @@ class SendRepeat(QThread):
                 udp_socket.settimeout(0.3)
                 data = functions.ReadMess(udp_socket)[0]
                 udp_socket.close()
+                print('RX Repeat : ', data)
                 clck = 0
                 self.checkCon.emit(True)
                 if len(data) > 6 and data.decode('raw_unicode_escape')[0] == '!' and data.decode('raw_unicode_escape')[
@@ -625,6 +626,7 @@ class SendRepeat(QThread):
                 print('Querry exception')
                 clck += 1
                 if clck > 3:
+                    clck = 4
                     self.checkCon.emit(False)
 
 
