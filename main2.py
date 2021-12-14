@@ -39,8 +39,7 @@ class App(QWidget):
 
         self.w_root.pushButton_3.pressed.connect(self.buttStatus)
 
-        self.w_root.pushButton_4.pressed.connect(self.buttStatusUstr)
-        self.w_root.pushButton_4.released.connect(self.buttStatusUstrOff)
+        self.w_root.pushButton_4.clicked.connect(self.buttStatusUstr)
 
         self.w_root.pushButton_5.clicked.connect(self.clearTextEdit)
         self.w_root.pushButton_6.clicked.connect(self.clearTextEdit)
@@ -54,7 +53,7 @@ class App(QWidget):
 
         self.w_root.tabWidget.currentChanged.connect(self.changeTextEdit)
 
-        self.SendRead.out_signal.connect(self.checkData)
+        self.SendRead.out_signal.connect(self.checkDataStatusUSTR)
         self.SendRepeat.out_signal.connect(self.checkData)
         self.SendRead.merr_signal.connect(self.checkMerr)
         self.SendRepeat.checkCon.connect(self.checkCon)
@@ -89,8 +88,18 @@ class App(QWidget):
 
         self.changeTextEdit()
 
+
+    def checkDataStatusUSTR(self, data):
+        if data:
+            if self.checkControlSum(data):
+                self.requestModules = False
+                self.dataBin = functions.strToBin(data)
+                self.setLeds()
+                self.requestModules = True
+
     def checkData(self, data):
         if self.checkControlSum(data):
+            self.w_root.label_63.setText('Control Sum')
             self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 150);border-radius: 20')
             self.dataBin = functions.strToBin(data)
             self.setLeds()
@@ -101,6 +110,7 @@ class App(QWidget):
             self.clck_Conts += 1
             if self.clck_ContS > 3:
                 self.clck_ContS = 4
+                self.w_root.label_63.setText('Control Sum')
                 self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0, 150);border-radius: 20')
 
 
@@ -128,7 +138,7 @@ class App(QWidget):
         x = 0
         for byte_str in range(len(data) - 1):
             x += byte_str
-        if chr(x).encode()[-1] == data[6]:
+        if int(bin(x)[-8:].zfill(8), 2) == data[6] :
             return True
         else:
             return False
@@ -144,7 +154,6 @@ class App(QWidget):
         self.w_root.textEdit_2.clear()
 
     def buttStatusUstr(self):
-        self.requestModules = True
         self.setTX_E_Ustr()
         # if self.checkStatus():
         #     self.w_root.textEdit.setTextColor(self.greenText)
@@ -155,8 +164,6 @@ class App(QWidget):
         #     self.w_root.textEdit.append('Ошибка выполнения команды " Статус устройств "')
         #     self.w_root.textEdit.setTextColor(self.blackText)
 
-    def buttStatusUstrOff(self):
-        self.requestModules = False
 
     def buttStatus(self):
         self.setTX_E()
@@ -255,93 +262,93 @@ class App(QWidget):
         #                       Байт состояния ВПЛП-М                        #
         # -------------------------------------------------------------------#
 
-        if self.dataBin[3][0] == '0':  # Местное управление
+        if self.dataBin[3][7] == '0':  # Местное управление
             self.w_root.label_44.setPixmap(QPixmap(self.ICON_GREEN_LED))
             self.w_root.label_45.setPixmap(QPixmap(self.ICON_RED_LED))
 
-        elif self.dataBin[3][0] == '1':  # Центральное управление
+        elif self.dataBin[3][7] == '1':  # Центральное управление
             self.w_root.label_45.setPixmap(QPixmap(self.ICON_GREEN_LED))
             self.w_root.label_44.setPixmap(QPixmap(self.ICON_RED_LED))
 
-        if self.dataBin[3][1] == '0':  # Внутрення синхронизация
+        if self.dataBin[3][6] == '0':  # Внутрення синхронизация
             self.w_root.label_37.setText('Внутр')
             self.w_root.label.setText(" ")
-        elif self.dataBin[3][1] == '1':  # Внешняя синхронизация
+        elif self.dataBin[3][6] == '1':  # Внешняя синхронизация
             self.w_root.label_37.setText('Внешн')
-            if self.dataBin[3][6] == '0':  # Внешние синхроимпульсы в норме
+            if self.dataBin[3][1] == '0':  # Внешние синхроимпульсы в норме
                 self.w_root.label.setStyleSheet('color: rgb(111, 189, 100)')
                 self.w_root.label.setText("Внешние синхроимпульсы в норме")
-            elif self.dataBin[3][6] == '1':  # Ошибка поступления внешних синхроимпульсов
+            elif self.dataBin[3][1] == '1':  # Ошибка поступления внешних синхроимпульсов
                 self.w_root.label.setText("Ошибка поступления внешних синхроимпульсов")
                 self.w_root.label.setStyleSheet('color: rgb(255, 0, 0)')
 
-        if self.dataBin[3][2:4] == '00':  # Ожидание готовности
+        if self.dataBin[3][4:6] == '00':  # Ожидание готовности
             self.w_root.label_55.setText('Ожидание готовности')
             self.w_root.label_55.setStyleSheet('background-color: rgb(211, 255, 183,100); border-radius: 20')
-        elif self.dataBin[3][2:4] == '01':  # Готов
+        elif self.dataBin[3][4:6] == '01':  # Готов
             self.w_root.label_55.setText('Готов')
             self.w_root.label_55.setStyleSheet('background-color: rgb(255, 255, 0,100); border-radius: 20')
-        elif self.dataBin[3][2:4] == '10':  # Работа
+        elif self.dataBin[3][4:6] == '10':  # Работа
             self.w_root.label_55.setText('Работа')
             self.w_root.label_55.setStyleSheet('background-color: rgb(0, 255, 0,100); border-radius: 20')
         else:
             self.w_root.label_55.setText('? Неизвестно ?')
             self.w_root.label_55.setStyleSheet('background-color: rgb(255, 0, 0,100); border-radius: 20')
 
-        if self.dataBin[3][4] == '0':  # В системе присутсвуют ошибки
+        if self.dataBin[3][3] == '0':  # В системе присутсвуют ошибки
             self.w_root.label_54.setText('Да')
             self.w_root.label_54.setStyleSheet('border-radius: 14;background-color: rgb(255, 0, 0,120);')
-        elif self.dataBin[3][4] == '1':  # Ошибок нет
+        elif self.dataBin[3][3] == '1':  # Ошибок нет
             self.w_root.label_54.setText('Нет')
             self.w_root.label_54.setStyleSheet('border-radius: 14;background-color: rgb(25, 255, 0, 100);')
 
-        if self.dataBin[3][5] == '0':  # Система охлаждения не готова
+        if self.dataBin[3][2] == '0':  # Система охлаждения не готова
             self.w_root.label_41.setPixmap(QPixmap(self.ICON_RED_LED))
-        elif self.dataBin[3][5] == '1':  # Система охлаждения готова
+        elif self.dataBin[3][2] == '1':  # Система охлаждения готова
             self.w_root.label_41.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-        if self.dataBin[3][7] == '1':  # Выходная энергия выходит за границы допустимого диапазона (не ошибка)
+        if self.dataBin[3][0] == '1':  # Выходная энергия выходит за границы допустимого диапазона (не ошибка)
             pass
 
         if self.requestModules:
             # -------------------------------------------------------------------#
             #                   Старший байт состояния модулей                   #
             # -------------------------------------------------------------------#
-            if self.dataBin[4][0] == '0':  # Модуль задающего генератора не готов
+            if self.dataBin[4][7] == '0':  # Модуль задающего генератора не готов
                 self.w_root.label_47.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[4][0] == '1':  # Модуль задающего генератора готов
+            elif self.dataBin[4][7] == '1':  # Модуль задающего генератора готов
                 self.w_root.label_47.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[4][1] == '1':  # Ошибка модуля задающего генератора
+            if self.dataBin[4][6] == '1':  # Ошибка модуля задающего генератора
                 self.w_root.label_46.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[4][2] == '0':  # Модуль задающего генератора не работет
+            if self.dataBin[4][5] == '0':  # Модуль задающего генератора не работет
                 self.w_root.label_48.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[4][2] == '1':  # Модуль задающего генератора работает
+            elif self.dataBin[4][5] == '1':  # Модуль задающего генератора работает
                 self.w_root.label_48.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[4][3] == '0':  # Модуль регенеративного усилителя не готов
+            if self.dataBin[4][4] == '0':  # Модуль регенеративного усилителя не готов
                 self.w_root.label_26.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[4][3] == '1':  # Модуль регенеративного усилителя готов
+            elif self.dataBin[4][4] == '1':  # Модуль регенеративного усилителя готов
                 self.w_root.label_26.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[4][4] == '1':  # Ошибка модуля регенеративного усилителя
+            if self.dataBin[4][3] == '1':  # Ошибка модуля регенеративного усилителя
                 self.w_root.label_25.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[4][5] == '0':  # Модуль регенеративного усилителя не работает или 1064 не в норме
+            if self.dataBin[4][2] == '0':  # Модуль регенеративного усилителя не работает или 1064 не в норме
                 self.w_root.label_58.setText('Не в норме')
                 self.w_root.label_58.setStyleSheet('border-radius: 14;background-color: rgb(255, 0, 0,120);')
                 self.isEn1064 = False
-            elif self.dataBin[4][5] == '1':  # Модуль регенеративного усилителя работает 1064 в норме
+            elif self.dataBin[4][2] == '1':  # Модуль регенеративного усилителя работает 1064 в норме
                 self.w_root.label_58.setText('В норме')
                 self.w_root.label_58.setStyleSheet('border-radius: 14;background-color: rgb(25, 255, 0, 100);')
                 self.isEn1064 = True
 
-            if self.dataBin[4][6] == '0':  # Модуль регенеративного усилителя не работает или 532  не в норме
+            if self.dataBin[4][1] == '0':  # Модуль регенеративного усилителя не работает или 532  не в норме
                 self.w_root.label_59.setText('Не в норме')
                 self.w_root.label_59.setStyleSheet('border-radius: 14;background-color: rgb(255, 0, 0,120);')
                 self.isEn532 = False
-            elif self.dataBin[4][6] == '1':  # Модуль регенеративного усилителя работает 532 в норме
+            elif self.dataBin[4][1] == '1':  # Модуль регенеративного усилителя работает 532 в норме
                 self.w_root.label_59.setText('В норме')
                 self.w_root.label_59.setStyleSheet('border-radius: 14;background-color: rgb(25, 255, 0, 100);')
                 self.isEn532 = True
@@ -351,63 +358,63 @@ class App(QWidget):
             else:
                 self.w_root.label_27.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[4][7] == '0':  # Пустой бит (Всегда 0)
+            if self.dataBin[4][0] == '0':  # Пустой бит (Всегда 0)
                 pass
-            elif self.dataBin[4][7] == '1':
+            elif self.dataBin[4][0] == '1':
                 pass
 
             # -------------------------------------------------------------------#
             #                   Младший байт состояния модулей                   #
             # -------------------------------------------------------------------#
 
-            if self.dataBin[5][0] == '0':  # Модуль накачки 1 не готов
+            if self.dataBin[5][7] == '0':  # Модуль накачки 1 не готов
                 self.w_root.label_8.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][0] == '1':  # Модуль накачки 1 готов
+            elif self.dataBin[5][7] == '1':  # Модуль накачки 1 готов
                 self.w_root.label_8.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][1] == '1':  # Ошибка модуля накачки 1
+            if self.dataBin[5][6] == '1':  # Ошибка модуля накачки 1
                 self.w_root.label_10.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[5][2] == '0':  # Модуль накачки 1 не работает
+            if self.dataBin[5][5] == '0':  # Модуль накачки 1 не работает
                 self.w_root.label_9.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][2] == '1':  # Модуль накачки 1 работает
+            elif self.dataBin[5][5] == '1':  # Модуль накачки 1 работает
                 self.w_root.label_9.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][3] == '0':  # Модуль накачки 2 не готов
+            if self.dataBin[5][4] == '0':  # Модуль накачки 2 не готов
                 self.w_root.label_12.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][3] == '1':  # Модуль накачки 2 готов
+            elif self.dataBin[5][4] == '1':  # Модуль накачки 2 готов
                 self.w_root.label_12.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][4] == '1':  # Ошибка модуля накачки 2
+            if self.dataBin[5][3] == '1':  # Ошибка модуля накачки 2
                 self.w_root.label_11.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[5][5] == '0':  # Модуль накачки 2 не работает
+            if self.dataBin[5][2] == '0':  # Модуль накачки 2 не работает
                 self.w_root.label_13.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][5] == '1':  # Модуль накачки 2 работает
+            elif self.dataBin[5][2] == '1':  # Модуль накачки 2 работает
                 self.w_root.label_13.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][6] == '0':  # Перключатель синхронизации в положении ВНУТР
+            if self.dataBin[5][1] == '0':  # Перключатель синхронизации в положении ВНУТР
                 self.w_root.label_34.setText('ВНУТР')
-            elif self.dataBin[5][6] == '1':  # Перключатель синхронизации в положении ВНЕШН
+            elif self.dataBin[5][1] == '1':  # Перключатель синхронизации в положении ВНЕШН
                 self.w_root.label_34.setText('ВНЕШН')
 
-            if self.dataBin[5][7] == '0':  # Переключатель МУ/ЦУ находится в положении МУ
+            if self.dataBin[5][0] == '0':  # Переключатель МУ/ЦУ находится в положении МУ
                 self.w_root.label_36.setText('МУ')
             elif self.dataBin[5][7] == '1':  # Переключатель МУ/ЦУ находится в положении ЦУ
                 self.w_root.label_36.setText('ЦУ')
 
-        elif not self.requestModules:
+        elif self.requestModules == False:
 
             # -------------------------------------------------------------------#
             #                   Старший байт состояния устройств                 #
             # -------------------------------------------------------------------#
 
-            if self.dataBin[4][0] == '0':  # Термоконтроллер АЭ не готов
+            if self.dataBin[4][7] == '0':  # Термоконтроллер АЭ не готов
                 self.w_root.label_71.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[4][0] == '1':  # Термоконтроллер АЭ готов
+            elif self.dataBin[4][7] == '1':  # Термоконтроллер АЭ готов
                 self.w_root.label_71.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[4][1] == '1':  # Ошибка термоконтроллера АЭ
+            if self.dataBin[4][6] == '1':  # Ошибка термоконтроллера АЭ
                 self.w_root.label_72.setPixmap(QPixmap(self.ICON_RED_LED))
 
             # Добавил Егоров Петр
@@ -424,36 +431,36 @@ class App(QWidget):
             #                   Младший байт состояния устройств                 #
             # -------------------------------------------------------------------#
 
-            if self.dataBin[5][0] == '0':  # Термоконтроллер LD1 не готов
+            if self.dataBin[5][7] == '0':  # Термоконтроллер LD1 не готов
                 self.w_root.label_60.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][0] == '1':  # Термоконтроллер LD1 готов
+            elif self.dataBin[5][7] == '1':  # Термоконтроллер LD1 готов
                 self.w_root.label_60.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][1] == '1':  # Ошибка Термоконтроллера LD1
+            if self.dataBin[5][6] == '1':  # Ошибка Термоконтроллера LD1
                 self.w_root.label_61.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[5][2] == '0':  # Выходная мощность LD1 не в норме
+            if self.dataBin[5][5] == '0':  # Выходная мощность LD1 не в норме
                 self.w_root.label_62.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][2] == '1':  # Выходная мощность LD1 в норме
+            elif self.dataBin[5][5] == '1':  # Выходная мощность LD1 в норме
                 self.w_root.label_62.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][3] == '1':  # Ошибка драйвера тока LD1
+            if self.dataBin[5][4] == '1':  # Ошибка драйвера тока LD1
                 self.w_root.label_66.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[5][4] == '0':  # Термоконтроллер LD2 не готов
+            if self.dataBin[5][3] == '0':  # Термоконтроллер LD2 не готов
                 self.w_root.label_80.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][4] == '1':  # Термоконтроллер LD2 готов
+            elif self.dataBin[5][3] == '1':  # Термоконтроллер LD2 готов
                 self.w_root.label_80.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][5] == '1':  # Ошибка Термоконтроллера LD2
+            if self.dataBin[5][2] == '1':  # Ошибка Термоконтроллера LD2
                 self.w_root.label_81.setPixmap(QPixmap(self.ICON_RED_LED))
 
-            if self.dataBin[5][6] == '0':  # Выходная мощность LD2 не в норме
+            if self.dataBin[5][1] == '0':  # Выходная мощность LD2 не в норме
                 self.w_root.label_82.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][6] == '1':  # Выходная мощность LD2 в норме
+            elif self.dataBin[5][1] == '1':  # Выходная мощность LD2 в норме
                 self.w_root.label_82.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[5][7] == '1':  # Ошибка драйвера тока LD2
+            if self.dataBin[5][0] == '1':  # Ошибка драйвера тока LD2
                 self.w_root.label_84.setPixmap(QPixmap(self.ICON_RED_LED))
 
     def setCu(self):
@@ -573,8 +580,8 @@ class SendRead(QThread):
                     print('Send exception')
 
     def checkData(self, data):
-        if len(data) > 6 and data.decode('raw_unicode_escape')[0] == '!' and data.decode('raw_unicode_escape')[
-            1] == '5' and data.decode('raw_unicode_escape')[2] == 'E':
+        if len(data) > 6 and chr(data[0]) == '!' and data[1] == 5 and chr(
+                data[2]) == 'E':
             self.out_signal.emit(data)
             self.merr_signal.emit('st'.encode('raw_unicode_escape'))
 
