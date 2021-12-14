@@ -1,8 +1,5 @@
-
 from PyQt5.QtCore import QThread
 from socket import *
-
-
 
 
 def binary_converted(data):
@@ -40,7 +37,6 @@ def listToString(s):
     # initialize an empty string
     str1 = ""
     result = str1.join(map(str, s))
-    # return string
     return result
 
 
@@ -57,26 +53,13 @@ def WriteCoM(bytebuff):
     return listToString(writestr).encode('raw_unicode_escape')
 
 
-def SendMess(bytebuff,socket,adr):
+def SendMess(bytebuff, socket, adr):
     data = WriteCoM(bytebuff)
     socket.sendto(data, adr)
-
 
 
 def ReadMess(socket):
     data = socket.recvfrom(7)
     return data
-
-
-def thread_SendRead(bytebuff, socket, adr):  # Не используется
-    SendMess(bytebuff, socket, adr)
-    QThread.msleep(4)  # Задержка между отправкой и приемом
-    rx_data = ReadMess(socket)
-    return rx_data
-
-
-
-
-
 
 

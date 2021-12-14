@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+import socket
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtCore import QThread, pyqtSignal
@@ -25,8 +25,6 @@ class App(QWidget):
         self.port = int(self.w_root.lineEdit_2.text())
         self.myIp = self.extract_ip()
 
-        self.requestModules = True
-
         self.SendRead = SendRead(self.myIp)
         self.SendRead.start()
 
@@ -35,31 +33,24 @@ class App(QWidget):
 
         self.startSets()
 
-        self.w_root.pushButton.pressed.connect(self.laserOn)
-
-        self.w_root.pushButton_2.pressed.connect(self.laserOff)
-
-        self.w_root.pushButton_3.pressed.connect(self.buttStatus)
-
+        self.w_root.pushButton.clicked.connect(self.laserOn)
+        self.w_root.pushButton_2.clicked.connect(self.laserOff)
+        self.w_root.pushButton_3.clicked.connect(self.buttStatus)
         self.w_root.pushButton_4.clicked.connect(self.buttStatusUstr)
-
         self.w_root.pushButton_5.clicked.connect(self.clearTextEdit)
         self.w_root.pushButton_6.clicked.connect(self.clearTextEdit)
-
         self.w_root.pushButton_7.clicked.connect(self.service)
-
         self.w_root.pushButton_9.clicked.connect(self.chngMoxaIpPort)
-
         self.w_root.pushButton_8.clicked.connect(self.setMu)
         self.w_root.pushButton_10.clicked.connect(self.setCu)
 
         self.w_root.tabWidget.currentChanged.connect(self.changeTextEdit)
 
-        self.SendRead.out_signal.connect(self.checkDataStatusUSTR)
+        self.SendRead.out_signalStatusUstr.connect(self.checkDataStatusUSTR)
+        self.SendRead.out_signalStatusMod.connect(self.checkDataStatusMOD)
         self.SendRepeat.out_signal.connect(self.checkData)
         self.SendRead.merr_signal.connect(self.checkMerr)
         self.SendRepeat.checkCon.connect(self.checkCon)
-        # ['#', '\x03', 'E', '\x00']
 
         self.w2.show()
 
@@ -76,6 +67,7 @@ class App(QWidget):
         self.blackText = QColor(0, 0, 0)
         self.clck_ContS = 0
 
+        self.requestModules = True
         self.showDataOnTextEdit = False
 
         self.SendRead.ip = self.ip
@@ -89,7 +81,6 @@ class App(QWidget):
 
         self.changeTextEdit()
 
-
     def checkDataStatusUSTR(self, data):
         if data:
             if self.checkControlSum(data):
@@ -98,8 +89,15 @@ class App(QWidget):
                 self.setLeds()
                 self.requestModules = True
 
+    def checkDataStatusMOD(self, data):
+        if data:
+            if self.checkControlSum(data):
+                self.requestModules = True
+                self.dataBin = functions.strToBin(data)
+                self.setLeds()
+
     def checkData(self, data):
-        if self.showDataOnTextEdit == True:
+        if self.showDataOnTextEdit:
             self.w_root.textEdit.append(str(self.dataBin))
         if self.checkControlSum(data):
             self.w_root.label_63.setText('Control Sum')
@@ -111,15 +109,17 @@ class App(QWidget):
             self.clck_Conts += 1
             if self.clck_ContS > 3:
                 self.clck_ContS = 4
+                self.setDefaults()
                 self.w_root.label_63.setText('Control Sum')
                 self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0, 150);border-radius: 20')
-
 
     def checkMerr(self, data):
         if data.decode('raw_unicode_escape') == 'OK':
             self.merr = 'OK'
-        elif data.decode('raw_unicode_escape') == 'st':
-            self.merr = 'st'  # Получение статуса
+        elif data.decode('raw_unicode_escape') == 'stMOD':
+            self.merr = 'stMOD'  # Получение статуса модулей':
+        elif data.decode('raw_unicode_escape') == 'stUSTR':
+            self.merr = 'stUSTR'  # Получение статуса устройств
         elif data.decode('raw_unicode_escape') == 'E0':
             self.merr = 'E0'  # Ошибка контрольной суммы
         elif data.decode('raw_unicode_escape') == 'E1':
@@ -133,13 +133,12 @@ class App(QWidget):
         elif data.decode('raw_unicode_escape') == 'E5':
             self.merr = 'E5'  # ВПЛП-М находится в режиме местного управления
         self.checkStatus()
-        # print('Merr = ', self.merr)
 
     def checkControlSum(self, data):
         x = 0
         for byte_str in data[:6]:
             x += byte_str
-        if int(bin(x)[-8:].zfill(8), 2) == data[6] :
+        if int(bin(x)[-8:].zfill(8), 2) == data[6]:
             return True
         else:
             return False
@@ -156,107 +155,79 @@ class App(QWidget):
 
     def buttStatusUstr(self):
         self.setTX_E_Ustr()
-        # if self.checkStatus():
-        #     self.w_root.textEdit.setTextColor(self.greenText)
-        #     self.w_root.textEdit.append('Успешное выполнение команды " Статус устройств "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-        # else:
-        #     self.w_root.textEdit.setTextColor(self.redText)
-        #     self.w_root.textEdit.append('Ошибка выполнения команды " Статус устройств "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-
 
     def buttStatus(self):
         self.setTX_E()
-        # if self.checkStatus():
-        #     self.w_root.textEdit.setTextColor(self.greenText)
-        #     self.w_root.textEdit.append('Успешное выполнение команды " Статус модулей "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-        # else:
-        #     self.w_root.textEdit.setTextColor(self.redText)
-        #     self.w_root.textEdit.append('Ошибка выполнения команды " Статус модулей "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
 
     def laserOn(self):
         self.w_root.textEdit.append('Результат перехода в состояние " Работа ":')
         self.setTX_P()
-        # if self.checkStatus():
-        #     self.w_root.textEdit.setTextColor(self.greenText)
-        #     self.w_root.textEdit.append('Успешный переход в состояние " Работа "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-        # else:
-        #     self.w_root.textEdit.setTextColor(self.redText)
-        #     self.w_root.textEdit.append('Ошибка перехода в состояния " Работа "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
 
     def laserOff(self):
         self.w_root.textEdit.append('Результат перехода в состояние  " Готов ":')
         self.setTX_O()
-        # if self.checkStatus():
-        #     self.w_root.textEdit.setTextColor(self.greenText)
-        #     self.w_root.textEdit.append('Успешный переход в состояние " Готов "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-        # else:
-        #     self.w_root.textEdit.setTextColor(self.redText)
-        #     self.w_root.textEdit.append('Ошибка перехода в состояния " Готов "')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
 
     def checkStatus(self):
-        if self.merr == 'st':
+        if self.merr == 'stMOD':
             self.w_root.textEdit.setTextColor(self.greenText)
-            self.w_root.textEdit.append('Успешное выполнение команды " Статус " ')
+            self.w_root.textEdit.append('Успешное выполнение команды " Статус Модулей " ')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return True
+
+        elif self.merr == 'stUSTR':
+            self.w_root.textEdit.setTextColor(self.greenText)
+            self.w_root.textEdit.append('Успешное выполнение команды " Статус Устройств " ')
+            self.w_root.textEdit.setTextColor(self.blackText)
+            self.w_root.textEdit.append('----------------------------------------------------------------------')
+
         elif self.merr == 'OK':
             self.w_root.textEdit.setTextColor(self.greenText)
             self.w_root.textEdit.append('OK')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return True
+
         elif self.merr == 'E0':
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Error E0 : Ошибка контрольной суммы')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
+
         elif self.merr == 'E1':
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Error E1 : Ошибка формата команды или сообщения')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
+
         elif self.merr == 'E2':
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Error E2 : Неизвестная команда или сообщение')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
+
         elif self.merr == 'E3':
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Error E3 : Недопустимое значение параметра')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
+
         elif self.merr == 'E4':
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Error E4 : Команда не может бьыть выполнена, так как еще не закончено '
                                         'выполнение ранее пришедшей команды')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
+
         elif self.merr == 'E5':
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Error E5 : НВПЛП-М находится в режиме местного управления')
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
+
         else:
             self.w_root.textEdit.setTextColor(self.redText)
             self.w_root.textEdit.append('Unknown Error {} : Нет ответа на команду'.format(self.merr))
             self.w_root.textEdit.setTextColor(self.blackText)
             self.w_root.textEdit.append('----------------------------------------------------------------------')
-            return False
 
     def setLeds(self):
         # -------------------------------------------------------------------#
@@ -322,6 +293,8 @@ class App(QWidget):
 
             if self.dataBin[4][6] == '1':  # Ошибка модуля задающего генератора
                 self.w_root.label_46.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_46.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[4][5] == '0':  # Модуль задающего генератора не работет
                 self.w_root.label_48.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -335,6 +308,8 @@ class App(QWidget):
 
             if self.dataBin[4][3] == '1':  # Ошибка модуля регенеративного усилителя
                 self.w_root.label_25.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_25.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[4][2] == '0':  # Модуль регенеративного усилителя не работает или 1064 не в норме
                 self.w_root.label_58.setText('Не в норме')
@@ -375,6 +350,8 @@ class App(QWidget):
 
             if self.dataBin[5][6] == '1':  # Ошибка модуля накачки 1
                 self.w_root.label_10.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_10.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][5] == '0':  # Модуль накачки 1 не работает
                 self.w_root.label_9.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -388,6 +365,8 @@ class App(QWidget):
 
             if self.dataBin[5][3] == '1':  # Ошибка модуля накачки 2
                 self.w_root.label_11.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_11.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][2] == '0':  # Модуль накачки 2 не работает
                 self.w_root.label_13.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -417,6 +396,8 @@ class App(QWidget):
 
             if self.dataBin[4][6] == '1':  # Ошибка термоконтроллера АЭ
                 self.w_root.label_72.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_72.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             # Добавил Егоров Петр
 
@@ -427,6 +408,8 @@ class App(QWidget):
 
             if self.dataBin[4][3] == '1':  # Ошибка термоконтроллера ГВГ
                 self.w_root.label_74.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_74.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             # -------------------------------------------------------------------#
             #                   Младший байт состояния устройств                 #
@@ -439,6 +422,8 @@ class App(QWidget):
 
             if self.dataBin[5][6] == '1':  # Ошибка Термоконтроллера LD1
                 self.w_root.label_61.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_61.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][5] == '0':  # Выходная мощность LD1 не в норме
                 self.w_root.label_62.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -447,6 +432,8 @@ class App(QWidget):
 
             if self.dataBin[5][4] == '1':  # Ошибка драйвера тока LD1
                 self.w_root.label_66.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_66.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][3] == '0':  # Термоконтроллер LD2 не готов
                 self.w_root.label_80.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -455,6 +442,8 @@ class App(QWidget):
 
             if self.dataBin[5][2] == '1':  # Ошибка Термоконтроллера LD2
                 self.w_root.label_81.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_81.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][1] == '0':  # Выходная мощность LD2 не в норме
                 self.w_root.label_82.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -463,34 +452,19 @@ class App(QWidget):
 
             if self.dataBin[5][0] == '1':  # Ошибка драйвера тока LD2
                 self.w_root.label_84.setPixmap(QPixmap(self.ICON_RED_LED))
+            else:
+                self.w_root.label_84.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
     def setCu(self):
         self.w_root.textEdit.append('Результат перехода в состояние " ЦУ ":')
         self.setTX_U()
-        # if self.checkStatus():
-        #     self.w_root.textEdit.setTextColor(self.greenText)
-        #     self.w_root.textEdit.append('Успешно переведено в режим ЦУ')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-        # else:
-        #     self.w_root.textEdit.setTextColor(self.redText)
-        #     self.w_root.textEdit.append('Ошибка смены режима')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
 
     def setMu(self):
         self.w_root.textEdit.append('Результат перехода в состояние " МУ ":')
         self.setTX_N()
-        # if self.checkStatus():
-        #     self.w_root.textEdit.setTextColor(self.greenText)
-        #     self.w_root.textEdit.append('Успешно переведено в режим МУ')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
-        # else:
-        #     self.w_root.textEdit.setTextColor(self.redText)
-        #     self.w_root.textEdit.append('Ошибка смены режима')
-        #     self.w_root.textEdit.setTextColor(self.blackText)
 
     def setTX_E(self):
         self.SendRead.tx = ['#', '\x03', 'E', '\x00']
-
 
     def setTX_E_Ustr(self):
         self.SendRead.tx = ['#', '\x03', 'E', '\x01']
@@ -528,9 +502,9 @@ class App(QWidget):
         else:
             self.w_root.label_3.setFixedSize(121, 41)
             self.w_root.label_3.setPixmap(QPixmap(self.NET_OFF))
+            self.setDefaults()
             self.w_root.label_63.setText('NO RX DATA')
             self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0,150);border-radius: 20')
-
 
     def chngMoxaIpPort(self):
         self.ip = self.w_root.lineEdit.text()
@@ -544,9 +518,50 @@ class App(QWidget):
         self.w_root.textEdit.append('MOXA PORT изменен на {}'.format(self.port))
         self.w_root.textEdit.setTextColor(self.blackText)
 
+    def setDefaults(self):
+        self.w_root.label_8.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_9.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_10.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_11.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_12.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_13.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_26.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_27.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_25.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_47.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_48.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_46.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_44.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_45.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_41.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_60.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_61.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_62.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_66.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_80.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_81.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_82.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_84.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_71.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_72.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_73.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_74.setPixmap(QPixmap(self.ICON_BLUE_LED))
+        self.w_root.label_37.setText('  ??')
+        self.w_root.label_54.setText('??')
+        self.w_root.label_58.setText('??')
+        self.w_root.label_59.setText('??')
+        self.w_root.label_34.setText('??')
+        self.w_root.label_36.setText('??')
+        self.w_root.label_63.setText('Control Sum')
+        self.w_root.label_63.setStyleSheet('background-color: rgb(135, 212, 157,220); border-radius: 20')
+        self.w_root.label_58.setStyleSheet('background-color: rgb(135, 212, 157,220); border-radius: 20')
+        self.w_root.label_59.setStyleSheet('background-color: rgb(135, 212, 157,220); border-radius: 20')
+        self.w_root.label_54.setStyleSheet('background-color: rgb(135, 212, 157,220); border-radius: 20')
+
 
 class SendRead(QThread):
-    out_signal = pyqtSignal(bytes)
+    out_signalStatusUstr = pyqtSignal(bytes)
+    out_signalStatusMod = pyqtSignal(bytes)
     merr_signal = pyqtSignal(bytes)
 
     def __init__(self, myIp):
@@ -562,6 +577,10 @@ class SendRead(QThread):
         while 1:
             self.msleep(1)
             if self.tx:
+                if ord(self.tx[3]) == 0:
+                    self.tx_MOD_USTR = True  # MOD = True
+                elif ord(self.tx[3]) == 1:
+                    self.tx_MOD_USTR = False  # USTR = False
                 try:
                     udp_socket = socket(AF_INET, SOCK_DGRAM)
                     adr = (self.ip, self.port)
@@ -569,22 +588,23 @@ class SendRead(QThread):
                     functions.SendMess(self.tx, udp_socket, adr)
                     print('TX : ', self.tx)
                     self.tx = ''
-                    # self.msleep(10)
                     data = functions.ReadMess(udp_socket)[0]
                     udp_socket.close()
                     print('RX : ', data)
                     self.checkData(data)
 
-                except:
-                    # self.msleep(40)
+                except OSError:
                     print('Send exception')
 
     def checkData(self, data):
         if len(data) > 6 and chr(data[0]) == '!' and data[1] == 5 and chr(
                 data[2]) == 'E':
-            self.out_signal.emit(data)
-            self.merr_signal.emit('st'.encode('raw_unicode_escape'))
-
+            if self.tx_MOD_USTR:
+                self.out_signalStatusMod.emit(data)
+                self.merr_signal.emit('stUSTR'.encode('raw_unicode_escape'))
+            elif not self.tx_MOD_USTR:
+                self.out_signalStatusUstr.emit(data)
+                self.merr_signal.emit('stMOD'.encode('raw_unicode_escape'))
 
         elif len(data) == 2 and chr(data[0]) == 'E' or data.decode('raw_unicode_escape') == 'OK':
             self.merr_signal.emit(data)
@@ -611,8 +631,7 @@ class SendRepeat(QThread):
                 udp_socket = socket(AF_INET, SOCK_DGRAM)
                 udp_socket.bind((self.my_ip, self.port))
                 functions.SendMess(tx, udp_socket, adr)
-                # self.msleep(10)
-                udp_socket.settimeout(0.3)
+                udp_socket.settimeout(0.1)
                 data = functions.ReadMess(udp_socket)[0]
                 udp_socket.close()
                 print('RX Repeat : ', data)
@@ -622,7 +641,7 @@ class SendRepeat(QThread):
                         data[2]) == 'E':
                     self.out_signal.emit(data)
 
-            except:
+            except OSError:
                 print('Querry exception')
                 clck += 1
                 if clck > 3:
