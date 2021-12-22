@@ -7,7 +7,6 @@ from PyQt5.QtGui import QPixmap, QColor
 from socket import *
 
 from form1 import *
-from form0 import *
 import functions
 
 
@@ -631,7 +630,7 @@ class SendRepeat(QThread):
                 udp_socket = socket(AF_INET, SOCK_DGRAM)
                 udp_socket.bind((self.my_ip, self.port))
                 functions.SendMess(tx, udp_socket, adr)
-                udp_socket.settimeout(0.1)
+                udp_socket.settimeout(0.4)
                 data = functions.ReadMess(udp_socket)[0]
                 udp_socket.close()
                 print('RX Repeat : ', data)
