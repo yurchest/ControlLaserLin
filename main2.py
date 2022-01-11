@@ -400,12 +400,12 @@ class App(QWidget):
 
             # Добавил Егоров Петр
 
-            if self.dataBin[4][2] == '0':  # Термоконтроллер ГВГ не готов
+            if self.dataBin[4][5] == '0':  # Термоконтроллер ГВГ не готов
                 self.w_root.label_73.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[4][2] == '1':  # Термоконтроллер ГВГ готов
+            elif self.dataBin[4][5] == '1':  # Термоконтроллер ГВГ готов
                 self.w_root.label_73.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
-            if self.dataBin[4][3] == '1':  # Ошибка термоконтроллера ГВГ
+            if self.dataBin[4][4] == '1':  # Ошибка термоконтроллера ГВГ
                 self.w_root.label_74.setPixmap(QPixmap(self.ICON_RED_LED))
             else:
                 self.w_root.label_74.setPixmap(QPixmap(self.ICON_BLUE_LED))
