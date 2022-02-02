@@ -27,8 +27,7 @@ class App(QWidget):
         self.SendRepeat = SendRepeat(self.myIp)
         self.SendRepeat.start()
 
-        self.CheckTX = CheckTX()
-        self.CheckTX.start()
+
 
         self.startSets()
 
@@ -47,13 +46,9 @@ class App(QWidget):
 
         self.SendRepeat.out_signal.connect(self.recieve_data)
         self.SendRepeat.checkCon.connect(self.checkCon)
-        self.CheckTX.wait_to_send.connect(self.wait_to_send)
 
         self.w2.show()
 
-    def wait_to_send(self,data):
-        if data == True:
-            self.SendRepeat.wait_for_send = True
 
     def startSets(self):
         self.ICON_RED_LED = ":/newPrefix/png/led-red-on.png"
@@ -168,19 +163,20 @@ class App(QWidget):
 
     def laserOn(self):
         self.SendRepeat.tx = ['#', '\x03', 'P', '\x00']
-        self.CheckTX.tx = ['#', '\x03', 'P', '\x00']
+        self.SendRepeat.wait_for_send = True
+
 
     def laserOff(self):
         self.SendRepeat.tx = ['#', '\x03', 'O', '\x00']
-        self.CheckTX.tx = ['#', '\x03', 'O', '\x00']
+        self.SendRepeat.wait_for_send = True
 
     def buttStatusUstr(self):
         self.SendRepeat.tx = ['#', '\x03', 'E', '\x01']
-        self.CheckTX.tx = ['#', '\x03', 'E', '\x01']
+        self.SendRepeat.wait_for_send = True
 
     def buttStatus(self):
         self.SendRepeat.tx = ['#', '\x03', 'E', '\x00']
-        self.CheckTX.tx = ['#', '\x03', 'E', '\x00']
+        self.SendRepeat.wait_for_send = True
 
     def clearTextEdit(self):
         self.w_root.textEdit_1.clear()
@@ -205,11 +201,12 @@ class App(QWidget):
 
     def setCu(self):
         self.SendRepeat.tx = ['#', '\x03', 'U', '\x00']
-        self.CheckTX.tx = ['#', '\x03', 'U', '\x00']
+        self.SendRepeat.wait_for_send = True
 
     def setMu(self):
         self.SendRepeat.tx = ['#', '\x03', 'N', '\x00']
-        self.CheckTX.tx = ['#', '\x03', 'N', '\x00']
+        self.SendRepeat.wait_for_send = True
+
 
     def setDefaults(self):
         self.w_root.label_8.setPixmap(QPixmap(self.ICON_BLUE_LED))
@@ -246,10 +243,10 @@ class App(QWidget):
         self.w_root.label_34.setText('??')
         self.w_root.label_36.setText('??')
         self.w_root.label_63.setText('Control Sum')
-        self.w_root.label_63.setStyleSheet('background-color: rgb(135, 212, 157, 220); border-radius: 20')
-        self.w_root.label_58.setStyleSheet('background-color: rgb(135, 212, 157, 220); border-radius: 20')
-        self.w_root.label_59.setStyleSheet('background-color: rgb(135, 212, 157, 220); border-radius: 20')
-        self.w_root.label_54.setStyleSheet('background-color: rgb(135, 212, 157, 220); border-radius: 20')
+        self.w_root.label_63.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
+        self.w_root.label_58.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
+        self.w_root.label_59.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
+        self.w_root.label_54.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
 
     def checkCon(self, data):
         if data:
@@ -260,7 +257,7 @@ class App(QWidget):
             self.w_root.label_3.setPixmap(QPixmap(self.NET_OFF))
             self.setDefaults()
             self.w_root.label_63.setText('NO RX DATA')
-            self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0,150);border-radius: 20')
+            self.w_root.label_63.setStyleSheet('background-color: rgba(255, 0, 0,150);border-radius: 20')
 
     def setLeds(self):
         # -------------------------------------------------------------------#
@@ -572,21 +569,6 @@ class SendRepeat(QThread):
 
     def stop(self):
         self.running = False
-
-class CheckTX(QThread):
-
-    wait_to_send = pyqtSignal(bool)
-
-    def __init__(self):
-        QThread.__init__(self)
-        self.tx = ''
-
-    def run(self):
-        while 1:
-            self.msleep(10)
-            if self.tx != '':
-                self.wait_to_send.emit(True)
-                self.tx = ''
 
 
 if __name__ == '__main__':
