@@ -2,6 +2,18 @@ from PyQt5.QtCore import QThread
 from socket import *
 
 
+def extract_ip():
+    st = socket(AF_INET, SOCK_DGRAM)
+    try:
+        st.connect(('10.255.255.255', 1))
+        IP = st.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        st.close()
+    return IP
+
+
 def binary_converted(data):
     datadec = []
     for x in data:
@@ -60,6 +72,11 @@ def SendMess(bytebuff, socket, adr):
 
 def ReadMess(socket):
     data = socket.recvfrom(7)
+    return data
+
+def SendRead(bytebuff, socket, adr):
+    SendMess(bytebuff, socket, adr)
+    data = ReadMess(socket)[0]
     return data
 
 
