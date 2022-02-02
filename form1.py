@@ -1432,7 +1432,7 @@ class Ui_MainWindow(object):
         self.lineEdit.setText(_translate("MainWindow", "192.168.10.254"))
         self.label_19.setText(_translate("MainWindow", "MOXA IP"))
         self.label_22.setText(_translate("MainWindow", "MOXA PORT"))
-        self.lineEdit_2.setText(_translate("MainWindow", "4001"))
+        self.lineEdit_2.setText(_translate("MainWindow", "4007"))
         self.pushButton_9.setText(_translate("MainWindow", "CHNG"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Основное меню"))
         self.label_56.setText(_translate("MainWindow", "Термоконтроллер LD1"))

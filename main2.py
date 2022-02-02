@@ -50,7 +50,6 @@ class App(QWidget):
         self.SendRepeat.out_signal.connect(self.checkData)
         self.SendRead.merr_signal.connect(self.checkMerr)
         self.SendRepeat.checkCon.connect(self.checkCon)
-        self.SendRepeat.sr_busy_signal.connect(self.sr_busy)
 
         self.w2.show()
 
@@ -160,8 +159,12 @@ class App(QWidget):
         self.setTX_E()
 
     def laserOn(self):
+        self.SendRepeat.stop()
+        self.SendRepeat.terminate()
         self.w_root.textEdit.append('Результат перехода в состояние " Работа ":')
         self.setTX_P()
+        self.SendRepeat.start()
+
 
     def laserOff(self):
         self.w_root.textEdit.append('Результат перехода в состояние  " Готов ":')
@@ -464,6 +467,7 @@ class App(QWidget):
         self.setTX_N()
 
     def setTX_E(self):
+
         self.SendRead.tx = ['#', '\x03', 'E', '\x00']
 
     def setTX_E_Ustr(self):
@@ -558,11 +562,9 @@ class App(QWidget):
         self.w_root.label_59.setStyleSheet('background-color: rgb(135, 212, 157,220); border-radius: 20')
         self.w_root.label_54.setStyleSheet('background-color: rgb(135, 212, 157,220); border-radius: 20')
 
-    def sr_busy(self, data):
-        if data:
-            self.SendRepeat.sr_busy = True  # Busy
-        elif not data:
-            self.SendRepeat.sr_busy = False  # not Busy
+
+
+
 
 
 class SendRead(QThread):
@@ -577,11 +579,8 @@ class SendRead(QThread):
         self.ip = '__init__'
         self.port = '__init__'
         self.my_ip = myIp
-        self.sr_busy = '__init__'
 
     def run(self):
-        print('My ip is ', self.my_ip)
-
         while 1:
             self.msleep(1)
             if self.tx:
@@ -591,17 +590,16 @@ class SendRead(QThread):
                     self.tx_MOD_USTR = False  # USTR = False
 
                 try:
-                    if not self.sr_busy:
                         udp_socket = socket(AF_INET, SOCK_DGRAM)
                         adr = (self.ip, self.port)
                         udp_socket.bind((self.my_ip, self.port))
                         functions.SendMess(self.tx, udp_socket, adr)
                         print('TX : ', self.tx)
-                        self.checkData(data)
+
                         data = functions.ReadMess(udp_socket)[0]
+                        self.checkData(data)
                         udp_socket.close()
                         print('RX : ', data)
-
 
                 except OSError:
                     print('Send exception')
@@ -626,30 +624,31 @@ class SendRead(QThread):
 class SendRepeat(QThread):
     out_signal = pyqtSignal(bytes)
     checkCon = pyqtSignal(bool)
-    sr_busy_signal = pyqtSignal(bool)
 
     def __init__(self, myIp):
         QThread.__init__(self)
         self.ip = '__init__'
         self.port = ''
         self.my_ip = myIp
+        self.running = True
+
+
 
     def run(self):
         tx = ['#', '\x03', 'E', '\x00']
         clck = 0
-        self.sr_busy_signal.emit(False)
-        while 1:
+        self.running = True
+        adr = (self.ip, self.port)
+        self.udp_socket = socket(AF_INET, SOCK_DGRAM)
+        self.udp_socket.bind((self.my_ip, self.port))
+
+        while self.running:
             try:
                 self.msleep(200)
-                self.sr_busy_signal.emit(True)
-                adr = (self.ip, self.port)
-                udp_socket = socket(AF_INET, SOCK_DGRAM)
-                udp_socket.bind((self.my_ip, self.port))
-                functions.SendMess(tx, udp_socket, adr)
-                udp_socket.settimeout(0.4)
-                data = functions.ReadMess(udp_socket)[0]
-                udp_socket.close()
-                self.sr_busy_signal.emit(False)
+
+                functions.SendMess(tx, self.udp_socket, adr)
+                self.udp_socket.settimeout(0.4)
+                data = functions.ReadMess(self.udp_socket)[0]
                 print('RX Repeat : ', data)
                 clck = 0
                 if len(data) > 6 and chr(data[0]) == '!' and data[1] == 5 and chr(
@@ -662,6 +661,11 @@ class SendRepeat(QThread):
                 if clck > 3:
                     clck = 4
                     self.checkCon.emit(False)
+
+    def stop(self):
+        self.running = False
+        self.udp_socket.connect((self.my_ip, self.port))
+        self.udp_socket.close()
 
 
 if __name__ == '__main__':

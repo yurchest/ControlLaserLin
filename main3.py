@@ -2,7 +2,7 @@
 import socket
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import QThread, pyqtSignal, QTimer, QEventLoop
 from PyQt5.QtGui import QPixmap, QColor
 from socket import *
 
@@ -27,6 +27,9 @@ class App(QWidget):
         self.SendRepeat = SendRepeat(self.myIp)
         self.SendRepeat.start()
 
+        self.CheckTX = CheckTX()
+        self.CheckTX.start()
+
         self.startSets()
 
         self.w_root.pushButton.clicked.connect(self.laserOn)
@@ -44,8 +47,13 @@ class App(QWidget):
 
         self.SendRepeat.out_signal.connect(self.recieve_data)
         self.SendRepeat.checkCon.connect(self.checkCon)
+        self.CheckTX.wait_to_send.connect(self.wait_to_send)
 
         self.w2.show()
+
+    def wait_to_send(self,data):
+        if data == True:
+            self.SendRepeat.wait_for_send = True
 
     def startSets(self):
         self.ICON_RED_LED = ":/newPrefix/png/led-red-on.png"
@@ -159,18 +167,20 @@ class App(QWidget):
             self.w_root.textEdit = self.w_root.textEdit_2
 
     def laserOn(self):
-        self.w_root.textEdit.append('Результат перехода в состояние " Работа ":')
         self.SendRepeat.tx = ['#', '\x03', 'P', '\x00']
+        self.CheckTX.tx = ['#', '\x03', 'P', '\x00']
 
     def laserOff(self):
-        self.w_root.textEdit.append('Результат перехода в состояние  " Готов ":')
         self.SendRepeat.tx = ['#', '\x03', 'O', '\x00']
+        self.CheckTX.tx = ['#', '\x03', 'O', '\x00']
 
     def buttStatusUstr(self):
         self.SendRepeat.tx = ['#', '\x03', 'E', '\x01']
+        self.CheckTX.tx = ['#', '\x03', 'E', '\x01']
 
     def buttStatus(self):
         self.SendRepeat.tx = ['#', '\x03', 'E', '\x00']
+        self.CheckTX.tx = ['#', '\x03', 'E', '\x00']
 
     def clearTextEdit(self):
         self.w_root.textEdit_1.clear()
@@ -180,22 +190,26 @@ class App(QWidget):
         self.showDataOnTextEdit = not self.showDataOnTextEdit
 
     def chngMoxaIpPort(self):
+        self.SendRepeat.stop()
+        self.SendRepeat.wait()
         self.ip = self.w_root.lineEdit.text()
         self.port = int(self.w_root.lineEdit_2.text())
         self.SendRepeat.ip = self.ip
         self.SendRepeat.port = self.port
+        self.SendRepeat.start()
         self.w_root.textEdit.setTextColor(self.yellowText)
         self.w_root.textEdit.append('MOXA IP изменен на {}'.format(self.ip))
         self.w_root.textEdit.append('MOXA PORT изменен на {}'.format(self.port))
         self.w_root.textEdit.setTextColor(self.blackText)
+        self.w_root.textEdit.append('----------------------------------------------------------------------')
 
     def setCu(self):
-        self.w_root.textEdit.append('Результат перехода в состояние " ЦУ ":')
         self.SendRepeat.tx = ['#', '\x03', 'U', '\x00']
+        self.CheckTX.tx = ['#', '\x03', 'U', '\x00']
 
     def setMu(self):
-        self.w_root.textEdit.append('Результат перехода в состояние " МУ ":')
         self.SendRepeat.tx = ['#', '\x03', 'N', '\x00']
+        self.CheckTX.tx = ['#', '\x03', 'N', '\x00']
 
     def setDefaults(self):
         self.w_root.label_8.setPixmap(QPixmap(self.ICON_BLUE_LED))
@@ -475,6 +489,7 @@ class App(QWidget):
                 self.w_root.label_84.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
 
+
 class SendRepeat(QThread):
     out_signal = pyqtSignal(tuple)
     checkCon = pyqtSignal(bool)
@@ -486,62 +501,92 @@ class SendRepeat(QThread):
         self.port = ''
         self.my_ip = myIp
 
+        self.wait_for_send = False
+
 
     def run(self):
+        self.running = True
         adr = (self.ip, self.port)
         udp_socket = socket(AF_INET, SOCK_DGRAM)
         udp_socket.bind((self.my_ip, self.port))
         udp_socket.settimeout(0.2)
         clck = 0
 
-        while 1:
+        while self.running:
             self.msleep(1)
-            if self.tx == ['#', '\x03', 'E', '\x00']:
-                tx_data_type = 'stMOD'
-                data_or_merr = 0
 
-            elif self.tx == '':
-                self.tx = ['#', '\x03', 'E', '\x00']
+            if self.wait_for_send == True:
+                if self.tx == ['#', '\x03', 'E', '\x00']:
+                    tx_data_type = 'stMOD'
+                    data_or_merr = 0
+
+
+                elif self.tx == ['#', '\x03', 'E', '\x01']:
+                    tx_data_type = 'stUSTR'
+                    data_or_merr = 0
+
+                elif self.tx == ['#', '\x03', 'O', '\x00']:
+                    tx_data_type = 'laserOFF'
+                    data_or_merr = 1
+
+                elif self.tx == ['#', '\x03', 'P', '\x00']:
+                    tx_data_type = 'laserON'
+                    data_or_merr = 1
+
+                elif self.tx == ['#', '\x03', 'N', '\x00']:
+                    tx_data_type = 'setMU'
+                    data_or_merr = 1
+
+                elif self.tx == ['#', '\x03', 'U', '\x00']:
+                    tx_data_type = 'setCU'
+                    data_or_merr = 1
+
+                tx = self.tx
+                self.wait_for_send = False
+
+            else:
                 self.msleep(200)
+                tx = ['#', '\x03', 'E', '\x00']
                 tx_data_type = 'stMOD_Repeat'
                 data_or_merr = 0
 
-            elif self.tx == ['#', '\x03', 'E', '\x01']:
-                tx_data_type = 'stUSTR'
-                data_or_merr = 0
 
-            elif self.tx == ['#', '\x03', 'O', '\x00']:
-                tx_data_type = 'laserOFF'
-                data_or_merr = 1
-
-            elif self.tx == ['#', '\x03', 'P', '\x00']:
-                tx_data_type = 'laserON'
-                data_or_merr = 1
-
-            elif self.tx == ['#', '\x03', 'N', '\x00']:
-                tx_data_type = 'setMU'
-                data_or_merr = 1
-
-            elif self.tx == ['#', '\x03', 'U', '\x00']:
-                tx_data_type = 'setCU'
-                data_or_merr = 1
             try:
-                functions.SendMess(self.tx, udp_socket, adr)
+                functions.SendMess(tx, udp_socket, adr)
+                print('Sent : ', tx)
                 data = functions.ReadMess(udp_socket)[0]
                 print('RX Repeat : ', data)
                 self.out_signal.emit((data, tx_data_type, data_or_merr))
                 clck = 0
                 self.checkCon.emit(True)
-                self.tx = ''
 
             except:
                 print('Querry exception')
                 clck += 1
                 if clck > 3:
                     clck = 4
-                    self.tx = ''
+                    tx = ''
                     self.checkCon.emit(False)
+
         udp_socket.close()
+
+    def stop(self):
+        self.running = False
+
+class CheckTX(QThread):
+
+    wait_to_send = pyqtSignal(bool)
+
+    def __init__(self):
+        QThread.__init__(self)
+        self.tx = ''
+
+    def run(self):
+        while 1:
+            self.msleep(10)
+            if self.tx != '':
+                self.wait_to_send.emit(True)
+                self.tx = ''
 
 
 if __name__ == '__main__':
