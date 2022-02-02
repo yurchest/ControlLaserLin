@@ -103,7 +103,6 @@ class App(QWidget):
                     self.w_root.textEdit.setTextColor(self.blackText)
                     self.w_root.textEdit.append(
                         '----------------------------------------------------------------------')
-
                 self.setLeds()
 
             elif not self.checkControlSum(data[0]):
@@ -517,7 +516,6 @@ class SendRepeat(QThread):
                     tx_data_type = 'stMOD'
                     data_or_merr = 0
 
-
                 elif self.tx == ['#', '\x03', 'E', '\x01']:
                     tx_data_type = 'stUSTR'
                     data_or_merr = 0
@@ -542,7 +540,7 @@ class SendRepeat(QThread):
                 self.wait_for_send = False
 
             else:
-                self.msleep(200)
+                self.msleep(50)
                 tx = ['#', '\x03', 'E', '\x00']
                 tx_data_type = 'stMOD_Repeat'
                 data_or_merr = 0
