@@ -10,6 +10,7 @@ from form1 import *
 import functions
 
 
+
 class App(QWidget):
     def __init__(self):
         QWidget.__init__(self)
@@ -149,7 +150,7 @@ class App(QWidget):
         x = 0
         for byte_str in data[:6]:
             x += byte_str
-        if int(bin(x)[-8:].zfill(8), 2) == data[6]:
+        if int(bin(x)[2:][-8:].zfill(8), 2) == data[6]:
             return True
         else:
             return False
@@ -560,7 +561,6 @@ class SendRepeat(QThread):
                 clck += 1
                 if clck > 3:
                     clck = 4
-                    tx = ''
                     self.checkCon.emit(False)
 
         udp_socket.close()
