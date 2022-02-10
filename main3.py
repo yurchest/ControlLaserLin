@@ -74,7 +74,13 @@ class App(QWidget):
 
     def recieve_data(self, data):
         if data[2] == 0:
-            if self.checkControlSum(data[0]):
+
+            if len(data[0].decode('raw_unicode_escape')) == 2:
+                self.checkMERR(data[0])
+                self.w_root.textEdit.setText(self.merr)
+                self.setDefaults()
+
+            elif self.checkControlSum(data[0]):
                 self.dataBin = functions.strToBin(data[0])
                 self.w_root.label_63.setText('Control Sum')
                 self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 150);border-radius: 20')
@@ -141,6 +147,8 @@ class App(QWidget):
             self.merr = 'Error E4 : Команда не может бьыть выполнена, так как еще не закончено выполнение ранее пришедшей команды'  # Команда не может бьыть выполнена, так как еще не закончено выполнение ранее пришедшей команды
         elif data.decode("raw_unicode_escape") == 'E5':
             self.merr = 'Error E5 : НВПЛП-М находится в режиме местного управления'  # ВПЛП-М находится в режиме местного управления
+        else:
+            self.merr = data.decode('raw_unicode_escape')
 
     def checkControlSum(self, data):
         x = 0
@@ -241,6 +249,7 @@ class App(QWidget):
         self.w_root.label_58.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
         self.w_root.label_59.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
         self.w_root.label_54.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
+        self.w_root.label.setText("  ")
 
     def checkCon(self, data):
         if data:
@@ -275,8 +284,9 @@ class App(QWidget):
                 self.w_root.label.setStyleSheet('color: rgb(111, 189, 100)')
                 self.w_root.label.setText("Внешние синхроимпульсы в норме")
             elif self.dataBin[3][1] == '1':  # Ошибка поступления внешних синхроимпульсов
-                self.w_root.label.setText("Ошибка поступления внешних синхроимпульсов")
                 self.w_root.label.setStyleSheet('color: rgb(255, 0, 0)')
+                self.w_root.label.setText("Ошибка внешних синхроимпульсов")
+
 
         if self.dataBin[3][4:6] == '00':  # Ожидание готовности
             self.w_root.label_55.setText('Ожидание готовности')

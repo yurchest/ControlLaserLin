@@ -1106,9 +1106,9 @@ background-color: rgb(0, 85, 255,140);
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>100</y>
-        <width>441</width>
+        <x>870</x>
+        <y>550</y>
+        <width>331</width>
         <height>51</height>
        </rect>
       </property>
@@ -1122,7 +1122,7 @@ background-color: rgb(0, 85, 255,140);
        </font>
       </property>
       <property name="text">
-       <string/>
+       <string>2</string>
       </property>
      </widget>
      <widget class="QFrame" name="frame_3">
@@ -1279,7 +1279,7 @@ background-color: rgb(83, 100, 255,100);
         <rect>
          <x>30</x>
          <y>10</y>
-         <width>167</width>
+         <width>189</width>
          <height>101</height>
         </rect>
        </property>
@@ -3075,7 +3075,7 @@ background-color: rgb(0, 85, 255,60);
      <x>0</x>
      <y>0</y>
      <width>1236</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

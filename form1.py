@@ -492,7 +492,7 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.label = QtWidgets.QLabel(self.tab)
-        self.label.setGeometry(QtCore.QRect(170, 100, 441, 51))
+        self.label.setGeometry(QtCore.QRect(500, 110, 431, 51))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(12)
