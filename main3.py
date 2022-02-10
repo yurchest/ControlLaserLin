@@ -2,7 +2,7 @@
 import socket
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtCore import QThread, pyqtSignal, QTimer, QEventLoop
+from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtGui import QPixmap, QColor
 from socket import *
 
@@ -75,7 +75,12 @@ class App(QWidget):
     def recieve_data(self, data):
         if data[2] == 0:
 
-            if len(data[0].decode('raw_unicode_escape')) == 2:
+            if type(data[0]) != bytes:
+                self.w_root.textEdit.setTextColor(self.redText)
+                self.w_root.textEdit.setText('Error : ' + str(data[0]))
+                self.w_root.textEdit.setTextColor(self.blackText)
+
+            elif len(data[0].decode('raw_unicode_escape')) == 2:
                 self.checkMERR(data[0])
                 self.w_root.textEdit.setText(self.merr)
                 self.setDefaults()
@@ -557,12 +562,16 @@ class SendRepeat(QThread):
                 clck = 0
                 self.checkCon.emit(True)
 
-            except:
+            except timeout:
                 print('Querry exception')
                 clck += 1
                 if clck > 3:
                     clck = 4
                     self.checkCon.emit(False)
+
+            except Exception as error:
+                self.out_signal.emit((error, tx_data_type, data_or_merr))
+
 
         udp_socket.close()
 
