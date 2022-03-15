@@ -128,12 +128,17 @@ class App(QWidget):
             elif data[1] == 'setCU':
                 command = 'Переход в ЦУ'
 
-            self.checkMERR(data[0])
+            if type(data[0]) != bytes:
+                self.w_root.textEdit.setTextColor(self.redText)
+                self.w_root.textEdit.setText('Error : ' + str(data[0]))
+                self.w_root.textEdit.setTextColor(self.blackText)
+            else:
+                self.checkMERR(data[0])
 
-            self.w_root.textEdit.append('Результат выполнения команды "{0}" :'.format(command))
-            self.w_root.textEdit.append(self.merr)
-            self.w_root.textEdit.setTextColor(self.blackText)
-            self.w_root.textEdit.append('----------------------------------------------------------------------')
+                self.w_root.textEdit.append('Результат выполнения команды "{0}" :'.format(command))
+                self.w_root.textEdit.append(self.merr)
+                self.w_root.textEdit.setTextColor(self.blackText)
+                self.w_root.textEdit.append('----------------------------------------------------------------------')
 
     def checkMERR(self, data):
         self.w_root.textEdit.setTextColor(self.redText)
