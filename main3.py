@@ -72,18 +72,22 @@ class App(QWidget):
         self.w_root.tabWidget.setCurrentIndex(0)
 
         self.changeTextEdit()
+        self.w_root.textEdit_1.setReadOnly(True)
+        self.w_root.textEdit_2.setReadOnly(True)
 
     def recieve_data(self, data):
         if data[2] == 0:
 
             if type(data[0]) != bytes:
                 self.w_root.textEdit.setTextColor(self.redText)
-                self.w_root.textEdit.setText('Error : ' + str(data[0]))
+                self.w_root.textEdit.setText(functions.get_current_time() + 'Error : ' + str(data[0]))
                 self.w_root.textEdit.setTextColor(self.blackText)
+                self.w_root.textEdit.append('----------------------------------------------------------------------')
+                self.setDefaults()
 
             elif len(data[0].decode('raw_unicode_escape')) == 2:
                 self.checkMERR(data[0])
-                self.w_root.textEdit.setText(self.merr)
+                self.w_root.textEdit.setText(functions.get_current_time() + self.merr)
                 self.setDefaults()
 
             elif self.checkControlSum(data[0]):
@@ -92,12 +96,13 @@ class App(QWidget):
                 self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 150);border-radius: 20')
 
                 if self.showDataOnTextEdit:
+                    self.w_root.textEdit.setTextColor(self.blackText)
                     self.w_root.textEdit.append(str(self.dataBin))
 
                 if data[1] == 'stMOD':
                     self.requestModules = True
                     self.w_root.textEdit.setTextColor(self.greenText)
-                    self.w_root.textEdit.append('Успешное выполнение команды " Статус Модулей " ')
+                    self.w_root.textEdit.append(functions.get_current_time() + 'Успешное выполнение команды " Статус Модулей " ')
                     self.w_root.textEdit.setTextColor(self.blackText)
                     self.w_root.textEdit.append(
                         '----------------------------------------------------------------------')
@@ -108,7 +113,7 @@ class App(QWidget):
                 elif data[1] == 'stUSTR':
                     self.requestModules = False
                     self.w_root.textEdit.setTextColor(self.greenText)
-                    self.w_root.textEdit.append('Успешное выполнение команды " Статус Устройств " ')
+                    self.w_root.textEdit.append(functions.get_current_time() + 'Успешное выполнение команды " Статус Устройств " ')
                     self.w_root.textEdit.setTextColor(self.blackText)
                     self.w_root.textEdit.append(
                         '----------------------------------------------------------------------')
@@ -131,15 +136,17 @@ class App(QWidget):
 
             if type(data[0]) != bytes:
                 self.w_root.textEdit.setTextColor(self.redText)
-                self.w_root.textEdit.setText('Error : ' + str(data[0]))
-                self.w_root.textEdit.setTextColor(self.blackText)
-            else:
-                self.checkMERR(data[0])
+                self.w_root.textEdit.setText(functions.get_current_time() + 'Error : ' + str(data[0]))
 
-                self.w_root.textEdit.append('Результат выполнения команды "{0}" :'.format(command))
-                self.w_root.textEdit.append(self.merr)
+
+            else:
                 self.w_root.textEdit.setTextColor(self.blackText)
-                self.w_root.textEdit.append('----------------------------------------------------------------------')
+                self.w_root.textEdit.append(functions.get_current_time() + 'Результат выполнения команды "{0}" :'.format(command))
+                self.checkMERR(data[0])
+                self.w_root.textEdit.append(self.merr)
+
+            self.w_root.textEdit.setTextColor(self.blackText)
+            self.w_root.textEdit.append('----------------------------------------------------------------------')
 
     def checkMERR(self, data):
         self.w_root.textEdit.setTextColor(self.redText)
@@ -157,7 +164,7 @@ class App(QWidget):
         elif data.decode('raw_unicode_escape') == 'E4':
             self.merr = 'Error E4 : Команда не может бьыть выполнена, так как еще не закончено выполнение ранее пришедшей команды'  # Команда не может бьыть выполнена, так как еще не закончено выполнение ранее пришедшей команды
         elif data.decode("raw_unicode_escape") == 'E5':
-            self.merr = 'Error E5 : НВПЛП-М находится в режиме местного управления'  # ВПЛП-М находится в режиме местного управления
+            self.merr = 'Error E5 : ВПЛП-М находится в режиме местного управления'  # ВПЛП-М находится в режиме местного управления
         else:
             self.merr = data.decode('raw_unicode_escape')
 
@@ -208,7 +215,7 @@ class App(QWidget):
         self.SendRepeat.port = self.port
         self.SendRepeat.start()
         self.w_root.textEdit.setTextColor(self.yellowText)
-        self.w_root.textEdit.append('MOXA IP изменен на {}'.format(self.ip))
+        self.w_root.textEdit.append(functions.get_current_time() + 'MOXA IP изменен на {}'.format(self.ip))
         self.w_root.textEdit.append('MOXA PORT изменен на {}'.format(self.port))
         self.w_root.textEdit.setTextColor(self.blackText)
         self.w_root.textEdit.append('----------------------------------------------------------------------')
@@ -255,6 +262,7 @@ class App(QWidget):
         self.w_root.label_59.setText('??')
         self.w_root.label_34.setText('??')
         self.w_root.label_36.setText('??')
+        self.w_root.label_55.setText('???')
         self.w_root.label_63.setText('Control Sum')
         self.w_root.label_63.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')
         self.w_root.label_58.setStyleSheet('background-color: rgba(135, 212, 157, 220); border-radius: 20')

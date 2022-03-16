@@ -414,7 +414,7 @@ class Ui_MainWindow(object):
         self.textEdit_1 = QtWidgets.QTextEdit(self.tab)
         self.textEdit_1.setGeometry(QtCore.QRect(410, 460, 451, 351))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.textEdit_1.setFont(font)
         self.textEdit_1.setStyleSheet("background-color: rgb(135, 212, 157,100); border-radius: 25%\n"
 "")
@@ -1327,7 +1327,7 @@ class Ui_MainWindow(object):
         self.textEdit_2 = QtWidgets.QTextEdit(self.tab_2)
         self.textEdit_2.setGeometry(QtCore.QRect(640, 470, 451, 291))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.textEdit_2.setFont(font)
         self.textEdit_2.setStyleSheet("background-color: rgb(135, 212, 157,100); border-radius: 25%\n"
 "")
@@ -1410,7 +1410,7 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;\"><br /></p></body></html>"))
         self.label_96.setText(_translate("MainWindow", "Состояние ус-ва"))
         self.label_52.setText(_translate("MainWindow", "СО"))
-        self.label_55.setText(_translate("MainWindow", "Ожидание готовности"))
+        self.label_55.setText(_translate("MainWindow", "???"))
         self.pushButton_3.setText(_translate("MainWindow", "Status"))
         self.label_39.setText(_translate("MainWindow", "Синхронизация"))
         self.label_37.setText(_translate("MainWindow", "??"))
