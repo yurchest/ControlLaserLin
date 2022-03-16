@@ -874,7 +874,7 @@ class Ui_MainWindow(object):
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.frame_8 = QtWidgets.QFrame(self.tab_2)
-        self.frame_8.setGeometry(QtCore.QRect(10, 80, 351, 341))
+        self.frame_8.setGeometry(QtCore.QRect(10, 70, 351, 341))
         self.frame_8.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 70px")
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1440,7 +1440,7 @@ class Ui_MainWindow(object):
         self.label_86.setText(_translate("MainWindow", "Ошибка"))
         self.label_87.setStyleSheet(_translate("MainWindow", "background-color: rgb(135, 212, 157,220);;border-radius: 20\n"
 ""))
-        self.label_87.setText(_translate("MainWindow", "Выходная мощность"))
+        self.label_87.setText(_translate("MainWindow", "МН1 Работа"))
         self.label_88.setText(_translate("MainWindow", "Ошибка драйвера тока"))
         self.label_67.setText(_translate("MainWindow", "Термоконтроллеры"))
         self.label_89.setText(_translate("MainWindow", "Готов"))
@@ -1456,7 +1456,7 @@ class Ui_MainWindow(object):
         self.label_79.setText(_translate("MainWindow", "Ошибка"))
         self.label_77.setStyleSheet(_translate("MainWindow", "background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
 ""))
-        self.label_77.setText(_translate("MainWindow", "Выходная мощность"))
+        self.label_77.setText(_translate("MainWindow", "МН2 Работа"))
         self.label_83.setText(_translate("MainWindow", "Ошибка драйвера тока"))
         self.label_97.setText(_translate("MainWindow", "Состояние Устройств"))
         self.pushButton_4.setText(_translate("MainWindow", "Опрос устройств"))

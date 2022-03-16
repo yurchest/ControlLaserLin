@@ -66,6 +66,7 @@ class App(QWidget):
         self.SendRepeat.ip = self.ip
         self.SendRepeat.port = self.port
 
+
         self.w_root.label_3.setFixedSize(121, 41)
         self.w_root.label_3.setPixmap(QPixmap(self.NET_OFF))
         self.w_root.tabWidget.setCurrentIndex(0)
@@ -279,11 +280,11 @@ class App(QWidget):
 
         if self.dataBin[3][7] == '0':  # Местное управление
             self.w_root.label_44.setPixmap(QPixmap(self.ICON_GREEN_LED))
-            self.w_root.label_45.setPixmap(QPixmap(self.ICON_RED_LED))
+            self.w_root.label_45.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
         elif self.dataBin[3][7] == '1':  # Центральное управление
             self.w_root.label_45.setPixmap(QPixmap(self.ICON_GREEN_LED))
-            self.w_root.label_44.setPixmap(QPixmap(self.ICON_RED_LED))
+            self.w_root.label_44.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
         if self.dataBin[3][6] == '0':  # Внутрення синхронизация
             self.w_root.label_37.setText('Внутр')
@@ -341,7 +342,7 @@ class App(QWidget):
                 self.w_root.label_46.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[4][5] == '0':  # Модуль задающего генератора не работет
-                self.w_root.label_48.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_48.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[4][5] == '1':  # Модуль задающего генератора работает
                 self.w_root.label_48.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -376,7 +377,7 @@ class App(QWidget):
             if self.isEn532 and self.isEn1064:
                 self.w_root.label_27.setPixmap(QPixmap(self.ICON_GREEN_LED))
             else:
-                self.w_root.label_27.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_27.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[4][0] == '0':  # Пустой бит (Всегда 0)
                 pass
@@ -398,7 +399,7 @@ class App(QWidget):
                 self.w_root.label_10.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][5] == '0':  # Модуль накачки 1 не работает
-                self.w_root.label_9.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_9.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[5][5] == '1':  # Модуль накачки 1 работает
                 self.w_root.label_9.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -413,7 +414,7 @@ class App(QWidget):
                 self.w_root.label_11.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][2] == '0':  # Модуль накачки 2 не работает
-                self.w_root.label_13.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_13.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[5][2] == '1':  # Модуль накачки 2 работает
                 self.w_root.label_13.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -470,8 +471,8 @@ class App(QWidget):
                 self.w_root.label_61.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][5] == '0':  # Выходная мощность LD1 не в норме
-                self.w_root.label_62.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][5] == '1':  # Выходная мощность LD1 в норме
+                self.w_root.label_62.setPixmap(QPixmap(self.ICON_BLUE_LED))
+            elif self.dataBin[5][5] == '1':  # Выходная мощность LD1 в норме (Работа)
                 self.w_root.label_62.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
             if self.dataBin[5][4] == '1':  # Ошибка драйвера тока LD1
@@ -490,8 +491,8 @@ class App(QWidget):
                 self.w_root.label_81.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][1] == '0':  # Выходная мощность LD2 не в норме
-                self.w_root.label_82.setPixmap(QPixmap(self.ICON_RED_LED))
-            elif self.dataBin[5][1] == '1':  # Выходная мощность LD2 в норме
+                self.w_root.label_82.setPixmap(QPixmap(self.ICON_BLUE_LED))
+            elif self.dataBin[5][1] == '1':  # Выходная мощность LD2 в норме (Работа)
                 self.w_root.label_82.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
             if self.dataBin[5][0] == '1':  # Ошибка драйвера тока LD2
@@ -517,9 +518,10 @@ class SendRepeat(QThread):
         self.running = True
         adr = (self.ip, self.port)
         udp_socket = socket(AF_INET, SOCK_DGRAM)
-        udp_socket.bind((self.my_ip, self.port))
+        udp_socket.bind(('169.254.107.93', self.port))
         udp_socket.settimeout(0.2)
         clck = 0
+        print(self.my_ip)
 
         while self.running:
             self.msleep(1)
