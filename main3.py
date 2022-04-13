@@ -141,7 +141,7 @@ class App(QWidget):
 
             else:
                 self.w_root.textEdit.setTextColor(self.blackText)
-                self.w_root.textEdit.append(functions.get_current_time() + 'Результат выполнения команды "{0}" :'.format(command))
+                self.w_root.textEdit.append(functions.get_current_time() + 'Ответ на команду "{0}" :'.format(command))
                 self.checkMERR(data[0])
                 self.w_root.textEdit.append(self.merr)
 
@@ -433,7 +433,7 @@ class App(QWidget):
 
             if self.dataBin[5][0] == '0':  # Переключатель МУ/ЦУ находится в положении МУ
                 self.w_root.label_36.setText('МУ')
-            elif self.dataBin[5][7] == '1':  # Переключатель МУ/ЦУ находится в положении ЦУ
+            elif self.dataBin[5][0] == '1':  # Переключатель МУ/ЦУ находится в положении ЦУ
                 self.w_root.label_36.setText('ЦУ')
 
         elif self.requestModules == False:
