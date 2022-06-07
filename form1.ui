@@ -53,7 +53,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -84,7 +84,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -171,7 +171,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Готов</string>
@@ -193,7 +193,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Работа</string>
@@ -215,7 +215,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string> Ошибка</string>
@@ -246,7 +246,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>РУ</string>
@@ -266,7 +266,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -353,7 +353,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Готов</string>
@@ -375,7 +375,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Работа</string>
@@ -397,7 +397,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string> Ошибка</string>
@@ -428,7 +428,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>МН 1</string>
@@ -448,7 +448,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -535,7 +535,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Готов</string>
@@ -557,7 +557,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Работа</string>
@@ -579,7 +579,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string> Ошибка</string>
@@ -610,7 +610,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>ЗГ</string>
@@ -641,14 +641,14 @@
       <property name="styleSheet">
        <string notr="true">#pushButton{
 border-radius: 16;
-background-color: rgb(135, 212, 157,220);
+background-color: rgba(135, 212, 157,220);
 }
 
 #pushButton:hover {
-	background-color: rgb(135, 212, 157,150);
+	background-color: rgba(135, 212, 157,150);
 }
 #pushButton:pressed {
-	background-color: rgb(135, 212, 157,80);
+	background-color: rgba(135, 212, 157,80);
 }
 
 </string>
@@ -719,14 +719,14 @@ background-color: rgb(135, 212, 157,220);
       <property name="styleSheet">
        <string notr="true">#pushButton_2{
 border-radius: 16;
-background-color: rgb(0, 85, 255,140);
+background-color: rgba(0, 85, 255,140);
 }
 #pushButton_2:hover {
-	background-color: rgb(0, 85, 255,120);
+	background-color: rgba(0, 85, 255,120);
 }
 
 #pushButton_2:pressed {
-	background-color: rgb(0, 85, 255,80);
+	background-color: rgba(0, 85, 255,80);
 }
 
 
@@ -748,7 +748,7 @@ background-color: rgb(0, 85, 255,140);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -835,7 +835,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Готов</string>
@@ -857,7 +857,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Работа</string>
@@ -907,7 +907,7 @@ background-color: rgb(0, 85, 255,140);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>МН 2</string>
@@ -932,7 +932,7 @@ background-color: rgb(0, 85, 255,140);
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,100); border-radius: 25%
+       <string notr="true">background-color: rgba(135, 212, 157,100); border-radius: 25%
 </string>
       </property>
       <property name="html">
@@ -953,7 +953,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -980,7 +980,7 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>Состояние ус-ва</string>
@@ -1027,7 +1027,7 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
        </property>
        <property name="text">
         <string>СО</string>
@@ -1055,7 +1055,7 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20
+        <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20
 
 </string>
        </property>
@@ -1088,15 +1088,15 @@ p, li { white-space: pre-wrap; }
       <property name="styleSheet">
        <string notr="true">#pushButton_3{
 border-radius: 16;
-background-color: rgb(0, 85, 255,140);
+background-color: rgba(0, 85, 255,140);
 }
 
 #pushButton_3:hover{
-	background-color: rgb(0, 85, 255,120);
+	background-color: rgba(0, 85, 255,120);
 }
 
 #pushButton_3:pressed {
-	background-color: rgb(0, 85, 255,100);
+	background-color: rgba(0, 85, 255,100);
 }</string>
       </property>
       <property name="text">
@@ -1122,7 +1122,7 @@ background-color: rgb(0, 85, 255,140);
        </font>
       </property>
       <property name="text">
-       <string>2</string>
+       <string/>
       </property>
      </widget>
      <widget class="QFrame" name="frame_3">
@@ -1135,7 +1135,7 @@ background-color: rgb(0, 85, 255,140);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1162,7 +1162,7 @@ background-color: rgb(0, 85, 255,140);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>Синхронизация</string>
@@ -1182,7 +1182,7 @@ background-color: rgb(0, 85, 255,140);
        </property>
        <property name="styleSheet">
         <string notr="true"> border-radius: 30;
-background-color: rgb(83, 100, 255,100);
+background-color: rgba(83, 100, 255,100);
 </string>
        </property>
        <property name="frameShape">
@@ -1210,7 +1210,7 @@ background-color: rgb(83, 100, 255,100);
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+         <string notr="true">background-color: rgba(135, 212, 157,0)</string>
         </property>
         <property name="text">
          <string>??</string>
@@ -1228,7 +1228,7 @@ background-color: rgb(83, 100, 255,100);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1296,7 +1296,7 @@ background-color: rgb(83, 100, 255,100);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Местное</string>
@@ -1318,7 +1318,7 @@ background-color: rgb(83, 100, 255,100);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+           <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
           </property>
           <property name="text">
            <string>Центральное</string>
@@ -1341,7 +1341,7 @@ background-color: rgb(83, 100, 255,100);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1368,7 +1368,7 @@ background-color: rgb(83, 100, 255,100);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>Ошибки в системе</string>
@@ -1396,7 +1396,7 @@ background-color: rgb(83, 100, 255,100);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
        </property>
        <property name="text">
         <string>??</string>
@@ -1416,7 +1416,7 @@ background-color: rgb(83, 100, 255,100);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1443,7 +1443,7 @@ background-color: rgb(83, 100, 255,100);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>Выберите управление:</string>
@@ -1470,15 +1470,15 @@ background-color: rgb(83, 100, 255,100);
        <property name="styleSheet">
         <string notr="true">#pushButton_8{
 border-radius: 16;
-background-color: rgb(0, 85, 255,140);
+background-color: rgba(0, 85, 255,140);
 }
 
 #pushButton_8:hover{
-	background-color: rgb(0, 85, 255,120);
+	background-color: rgba(0, 85, 255,120);
 }
 
 #pushButton_8:pressed {
-	background-color: rgb(0, 85, 255,100);
+	background-color: rgba(0, 85, 255,100);
 }</string>
        </property>
        <property name="text">
@@ -1506,15 +1506,15 @@ background-color: rgb(0, 85, 255,140);
        <property name="styleSheet">
         <string notr="true">#pushButton_10{
 border-radius: 16;
-background-color: rgb(0, 85, 255,140);
+background-color: rgba(0, 85, 255,140);
 }
 
 #pushButton_10:hover{
-	background-color: rgb(0, 85, 255,120);
+	background-color: rgba(0, 85, 255,120);
 }
 
 #pushButton_10:pressed {
-	background-color: rgb(0, 85, 255,100);
+	background-color: rgba(0, 85, 255,100);
 }</string>
        </property>
        <property name="text">
@@ -1543,14 +1543,14 @@ background-color: rgb(0, 85, 255,140);
       <property name="styleSheet">
        <string notr="true">#pushButton_5{
 border-radius: 12;
-background-color: rgb(0, 85, 255,60);
+background-color: rgba(0, 85, 255,60);
 }
 
 #pushButton_5:hover {
-	background-color: rgb(0, 85, 255,40);
+	background-color: rgba(0, 85, 255,40);
 }
 #pushButton_5:pressed {
-	background-color: rgb(0, 85, 255,20);
+	background-color: rgba(0, 85, 255,20);
 }
 
 
@@ -1571,7 +1571,7 @@ background-color: rgb(0, 85, 255,60);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1598,7 +1598,7 @@ background-color: rgb(0, 85, 255,60);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>Выходная Энергия</string>
@@ -1626,7 +1626,7 @@ background-color: rgb(0, 85, 255,60);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>1064 мкм</string>
@@ -1654,7 +1654,7 @@ background-color: rgb(0, 85, 255,60);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0); border-radius: 20</string>
        </property>
        <property name="text">
         <string>532 мкм</string>
@@ -1682,7 +1682,7 @@ background-color: rgb(0, 85, 255,60);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
        </property>
        <property name="text">
         <string>??</string>
@@ -1710,7 +1710,7 @@ background-color: rgb(0, 85, 255,60);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+        <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
        </property>
        <property name="text">
         <string>??</string>
@@ -1741,14 +1741,14 @@ background-color: rgb(0, 85, 255,60);
       <property name="styleSheet">
        <string notr="true">#pushButton_7{
 border-radius: 12;
-background-color: rgb(0, 85, 255,60);
+background-color: rgba(0, 85, 255,60);
 }
 
 #pushButton_7:hover {
-	background-color: rgb(0, 85, 255,40);
+	background-color: rgba(0, 85, 255,40);
 }
 #pushButton_7:pressed {
-	background-color: rgb(0, 85, 255,20);
+	background-color: rgba(0, 85, 255,20);
 }
 
 
@@ -1778,7 +1778,7 @@ background-color: rgb(0, 85, 255,60);
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="text">
        <string>Control Sum</string>
@@ -1806,7 +1806,7 @@ background-color: rgb(0, 85, 255,60);
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,130); border-radius: 10</string>
+       <string notr="true">background-color: rgba(135, 212, 157,130); border-radius: 10</string>
       </property>
       <property name="text">
        <string>192.168.10.254</string>
@@ -1875,7 +1875,7 @@ background-color: rgb(0, 85, 255,60);
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,130); border-radius: 10</string>
+       <string notr="true">background-color: rgba(135, 212, 157,130); border-radius: 10</string>
       </property>
       <property name="text">
        <string>4001</string>
@@ -1902,15 +1902,15 @@ background-color: rgb(0, 85, 255,60);
       <property name="styleSheet">
        <string notr="true">#pushButton_9{
 border-radius: 15;
-background-color: rgb(0, 85, 255,140);
+background-color: rgba(0, 85, 255,140);
 }
 
 #pushButton_9:hover{
-	background-color: rgb(0, 85, 255,120);
+	background-color: rgba(0, 85, 255,120);
 }
 
 #pushButton_9:pressed {
-	background-color: rgb(0, 85, 255,100);
+	background-color: rgba(0, 85, 255,100);
 }</string>
       </property>
       <property name="text">
@@ -1932,7 +1932,7 @@ background-color: rgb(0, 85, 255,140);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 70px</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 70px</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1959,7 +1959,7 @@ background-color: rgb(0, 85, 255,140);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 20px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 20px</string>
        </property>
        <property name="text">
         <string>Термоконтроллер LD1</string>
@@ -1978,7 +1978,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2000,7 +2000,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2022,7 +2022,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2044,7 +2044,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2078,7 +2078,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);;border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);;border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2101,7 +2101,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);;border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);;border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2124,7 +2124,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string>background-color: rgb(135, 212, 157,220);;border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);;border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2147,7 +2147,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);;border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);;border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2171,7 +2171,7 @@ background-color: rgb(0, 85, 255,140);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 70px</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 70px</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -2198,7 +2198,7 @@ background-color: rgb(0, 85, 255,140);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 20px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 20px</string>
        </property>
        <property name="text">
         <string>Термоконтроллеры</string>
@@ -2217,7 +2217,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2239,7 +2239,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2273,7 +2273,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2296,7 +2296,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2319,7 +2319,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string>background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2342,7 +2342,7 @@ background-color: rgb(0, 85, 255,140);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2365,7 +2365,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2387,7 +2387,7 @@ background-color: rgb(0, 85, 255,140);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2410,7 +2410,7 @@ background-color: rgb(0, 85, 255,140);
        </property>
        <property name="styleSheet">
         <string notr="true"> border-radius: 40;
-background-color: rgb(83, 100, 255,100);
+background-color: rgba(83, 100, 255,100);
 </string>
        </property>
        <property name="frameShape">
@@ -2438,7 +2438,7 @@ background-color: rgb(83, 100, 255,100);
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+         <string notr="true">background-color: rgba(135, 212, 157,0)</string>
         </property>
         <property name="text">
          <string>АЭ</string>
@@ -2456,7 +2456,7 @@ background-color: rgb(83, 100, 255,100);
        </property>
        <property name="styleSheet">
         <string notr="true"> border-radius: 40;
-background-color: rgb(83, 100, 255,100);
+background-color: rgba(83, 100, 255,100);
 </string>
        </property>
        <property name="frameShape">
@@ -2484,7 +2484,7 @@ background-color: rgb(83, 100, 255,100);
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+         <string notr="true">background-color: rgba(135, 212, 157,0)</string>
         </property>
         <property name="text">
          <string>ГВГ</string>
@@ -2502,7 +2502,7 @@ background-color: rgb(83, 100, 255,100);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 70px</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 70px</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -2529,7 +2529,7 @@ background-color: rgb(83, 100, 255,100);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 20px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 20px</string>
        </property>
        <property name="text">
         <string>Термоконтроллер LD2</string>
@@ -2548,7 +2548,7 @@ background-color: rgb(83, 100, 255,100);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2570,7 +2570,7 @@ background-color: rgb(83, 100, 255,100);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2592,7 +2592,7 @@ background-color: rgb(83, 100, 255,100);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2614,7 +2614,7 @@ background-color: rgb(83, 100, 255,100);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0);; border-radius: 15px</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0);; border-radius: 15px</string>
        </property>
        <property name="text">
         <string/>
@@ -2648,7 +2648,7 @@ background-color: rgb(83, 100, 255,100);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2671,7 +2671,7 @@ background-color: rgb(83, 100, 255,100);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2694,7 +2694,7 @@ background-color: rgb(83, 100, 255,100);
            </font>
           </property>
           <property name="styleSheet">
-           <string>background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2717,7 +2717,7 @@ background-color: rgb(83, 100, 255,100);
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(135, 212, 157,220);; border-radius: 20
+           <string notr="true">background-color: rgba(135, 212, 157,220);; border-radius: 20
 </string>
           </property>
           <property name="text">
@@ -2777,15 +2777,15 @@ background-color: rgb(83, 100, 255,100);
       <property name="styleSheet">
        <string notr="true">#pushButton_4{
 border-radius: 16;
-background-color: rgb(0, 85, 255,140);
+background-color: rgba(0, 85, 255,140);
 }
 
 #pushButton_4:hover {
-	background-color: rgb(0, 85, 255,120);
+	background-color: rgba(0, 85, 255,120);
 }
 
 #pushButton_4:pressed {
-	background-color: rgb(0, 85, 255,100);
+	background-color: rgba(0, 85, 255,100);
 }
 
 </string>
@@ -2804,7 +2804,7 @@ background-color: rgb(0, 85, 255,140);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -2831,7 +2831,7 @@ background-color: rgb(0, 85, 255,140);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0)</string>
        </property>
        <property name="text">
         <string>Переключатель синхронизации в положении </string>
@@ -2848,7 +2848,7 @@ background-color: rgb(0, 85, 255,140);
        </property>
        <property name="styleSheet">
         <string notr="true"> border-radius: 40;
-background-color: rgb(83, 100, 255,100);
+background-color: rgba(83, 100, 255,100);
 </string>
        </property>
        <property name="frameShape">
@@ -2876,7 +2876,7 @@ background-color: rgb(83, 100, 255,100);
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+         <string notr="true">background-color: rgba(135, 212, 157,0)</string>
         </property>
         <property name="text">
          <string>???</string>
@@ -2894,7 +2894,7 @@ background-color: rgb(83, 100, 255,100);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,220); border-radius: 20</string>
+       <string notr="true">background-color: rgba(135, 212, 157,220); border-radius: 20</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -2921,7 +2921,7 @@ background-color: rgb(83, 100, 255,100);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+        <string notr="true">background-color: rgba(135, 212, 157,0)</string>
        </property>
        <property name="text">
         <string>Переключатель МУ/ЦУ находится в положении</string>
@@ -2938,7 +2938,7 @@ background-color: rgb(83, 100, 255,100);
        </property>
        <property name="styleSheet">
         <string notr="true"> border-radius: 40;
-background-color: rgb(83, 100, 255,100);
+background-color: rgba(83, 100, 255,100);
 </string>
        </property>
        <property name="frameShape">
@@ -2966,7 +2966,7 @@ background-color: rgb(83, 100, 255,100);
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(135, 212, 157,0)</string>
+         <string notr="true">background-color: rgba(135, 212, 157,0)</string>
         </property>
         <property name="text">
          <string>???</string>
@@ -2989,7 +2989,7 @@ background-color: rgb(83, 100, 255,100);
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(135, 212, 157,100); border-radius: 25%
+       <string notr="true">background-color: rgba(135, 212, 157,100); border-radius: 25%
 </string>
       </property>
       <property name="html">
@@ -3021,16 +3021,16 @@ p, li { white-space: pre-wrap; }
       <property name="styleSheet">
        <string notr="true">#pushButton_6{
 border-radius: 12;
-background-color: rgb(0, 85, 255,60);
+background-color: rgba(0, 85, 255,60);
 }
 
 #pushButton_6:hover {
-	background-color: rgb(0, 85, 255,40);
+	background-color: rgba(0, 85, 255,40);
 }
 
 
 #pushButton_6:pressed {
-	background-color: rgb(0, 85, 255,20);
+	background-color: rgba(0, 85, 255,20);
 }
 
 </string>
@@ -3075,7 +3075,7 @@ background-color: rgb(0, 85, 255,60);
      <x>0</x>
      <y>0</y>
      <width>1236</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
