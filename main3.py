@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 import socket
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtGui import QPixmap, QColor
 from socket import *
 
 from form1 import *
 import functions
+
+import configparser
 
 
 class App(QWidget):
@@ -24,10 +26,11 @@ class App(QWidget):
         self.port = int(self.w_root.lineEdit_2.text())
         self.myIp = functions.extract_ip()
 
-        self.SendRepeat = SendRepeat(self.myIp)
-        self.SendRepeat.start()
 
         self.startSets()
+
+        self.SendRepeat = SendRepeat(self.ip, self.my_ip, self.port)
+        self.SendRepeat.start()
 
         self.w_root.pushButton.clicked.connect(self.laserOn)
         self.w_root.pushButton_2.clicked.connect(self.laserOff)
@@ -63,9 +66,24 @@ class App(QWidget):
         self.requestModules = True
         self.showDataOnTextEdit = False
 
-        self.SendRepeat.ip = self.ip
-        self.SendRepeat.port = self.port
+        # self.SendRepeat.ip = self.ip
+        # self.SendRepeat.port = self.port
+        # self.SendRepeat.my_ip = self.my_ip
 
+        
+        try:
+            self.read_config()
+            self.w_root.lineEdit_2.setText(str(self.port))
+            self.w_root.lineEdit.setText(self.ip)
+            udp_socket = socket(AF_INET, SOCK_DGRAM)
+            udp_socket.bind((self.my_ip, self.port))
+            udp_socket.close()
+        except:
+            error = QMessageBox()
+            error.setWindowTitle("Ошибка")
+            error.setText("\nНеверно заданы данные в конфигурационном файле 'config.ini' \n\n")
+            error.setIcon(QMessageBox.Information)
+            error.exec()
 
         self.w_root.label_3.setFixedSize(121, 41)
         self.w_root.label_3.setPixmap(QPixmap(self.NET_OFF))
@@ -74,6 +92,24 @@ class App(QWidget):
         self.changeTextEdit()
         self.w_root.textEdit_1.setReadOnly(True)
         self.w_root.textEdit_2.setReadOnly(True)
+
+
+    def read_config(self):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        self.ip = config["Global"]["UDP_NPORT"]
+        self.my_ip = config["Global"]["UDP_SID"]
+        self.port = int(config["Global"]["PORT"])
+        # print(f"{type(self.port)}  {self.port} ")
+
+    def write_config(self):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        config["Global"]["UDP_NPORT"] = self.ip
+        config["Global"]["PORT"] = str(self.port)
+
+        with open('config.ini', 'w') as config_file:
+            config.write(config_file)
 
     def recieve_data(self, data):
         if data[2] == 0:
@@ -93,7 +129,7 @@ class App(QWidget):
             elif self.checkControlSum(data[0]):
                 self.dataBin = functions.strToBin(data[0])
                 self.w_root.label_63.setText('Control Sum')
-                self.w_root.label_63.setStyleSheet('background-color: rgb(0, 255, 0, 150);border-radius: 20')
+                self.w_root.label_63.setStyleSheet('background-color: rgba(0, 255, 0, 150);border-radius: 20')
 
                 if self.showDataOnTextEdit:
                     self.w_root.textEdit.setTextColor(self.blackText)
@@ -122,7 +158,7 @@ class App(QWidget):
             elif not self.checkControlSum(data[0]):
                 self.setDefaults()
                 self.w_root.label_63.setText('Control Sum')
-                self.w_root.label_63.setStyleSheet('background-color: rgb(255, 0, 0, 150);border-radius: 20')
+                self.w_root.label_63.setStyleSheet('background-color: rgba(255, 0, 0, 150);border-radius: 20')
 
         elif data[2] == 1:
             if data[1] == 'laserON':
@@ -220,6 +256,8 @@ class App(QWidget):
         self.w_root.textEdit.setTextColor(self.blackText)
         self.w_root.textEdit.append('----------------------------------------------------------------------')
 
+        self.write_config()
+
     def setCu(self):
         self.SendRepeat.tx = ['#', '\x03', 'U', '\x00']
         self.SendRepeat.wait_for_send = True
@@ -300,32 +338,32 @@ class App(QWidget):
         elif self.dataBin[3][6] == '1':  # Внешняя синхронизация
             self.w_root.label_37.setText('Внешн')
             if self.dataBin[3][1] == '0':  # Внешние синхроимпульсы в норме
-                self.w_root.label.setStyleSheet('color: rgb(111, 189, 100)')
+                self.w_root.label.setStyleSheet('color: rgba(111, 189, 100)')
                 self.w_root.label.setText("Внешние синхроимпульсы в норме")
             elif self.dataBin[3][1] == '1':  # Ошибка поступления внешних синхроимпульсов
-                self.w_root.label.setStyleSheet('color: rgb(255, 0, 0)')
+                self.w_root.label.setStyleSheet('color: rgba(255, 0, 0)')
                 self.w_root.label.setText("Ошибка внешних синхроимпульсов")
 
 
         if self.dataBin[3][4:6] == '00':  # Ожидание готовности
             self.w_root.label_55.setText('Ожидание готовности')
-            self.w_root.label_55.setStyleSheet('background-color: rgb(211, 255, 183,100); border-radius: 20')
+            self.w_root.label_55.setStyleSheet('background-color: rgba(211, 255, 183,100); border-radius: 20')
         elif self.dataBin[3][4:6] == '01':  # Готов
             self.w_root.label_55.setText('Готов')
-            self.w_root.label_55.setStyleSheet('background-color: rgb(255, 255, 0,100); border-radius: 20')
+            self.w_root.label_55.setStyleSheet('background-color: rgba(255, 255, 0,100); border-radius: 20')
         elif self.dataBin[3][4:6] == '10':  # Работа
             self.w_root.label_55.setText('Работа')
-            self.w_root.label_55.setStyleSheet('background-color: rgb(0, 255, 0,100); border-radius: 20')
+            self.w_root.label_55.setStyleSheet('background-color: rgba(0, 255, 0,100); border-radius: 20')
         else:
-            self.w_root.label_55.setText('? Неизвестно ?')
-            self.w_root.label_55.setStyleSheet('background-color: rgb(255, 0, 0,100); border-radius: 20')
+            self.w_root.label_55.setText(' ? Неизвестно ?')
+            self.w_root.label_55.setStyleSheet('background-color: rgba(255, 0, 0,100); border-radius: 20')
 
         if self.dataBin[3][3] == '0':  # В системе присутсвуют ошибки
             self.w_root.label_54.setText('Да')
-            self.w_root.label_54.setStyleSheet('border-radius: 14;background-color: rgb(255, 0, 0,120);')
+            self.w_root.label_54.setStyleSheet('border-radius: 14;background-color: rgba(255, 0, 0,120);')
         elif self.dataBin[3][3] == '1':  # Ошибок нет
             self.w_root.label_54.setText('Нет')
-            self.w_root.label_54.setStyleSheet('border-radius: 14;background-color: rgb(25, 255, 0, 100);')
+            self.w_root.label_54.setStyleSheet('border-radius: 14;background-color: rgba(25, 255, 0, 100);')
 
         if self.dataBin[3][2] == '0':  # Система охлаждения не готова
             self.w_root.label_41.setPixmap(QPixmap(self.ICON_RED_LED))
@@ -340,7 +378,7 @@ class App(QWidget):
             #                   Старший байт состояния модулей                   #
             # -------------------------------------------------------------------#
             if self.dataBin[4][7] == '0':  # Модуль задающего генератора не готов
-                self.w_root.label_47.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_47.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[4][7] == '1':  # Модуль задающего генератора готов
                 self.w_root.label_47.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -355,7 +393,7 @@ class App(QWidget):
                 self.w_root.label_48.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
             if self.dataBin[4][4] == '0':  # Модуль регенеративного усилителя не готов
-                self.w_root.label_26.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_26.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[4][4] == '1':  # Модуль регенеративного усилителя готов
                 self.w_root.label_26.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -366,20 +404,20 @@ class App(QWidget):
 
             if self.dataBin[4][2] == '0':  # Модуль регенеративного усилителя не работает или 1064 не в норме
                 self.w_root.label_58.setText('Не в норме')
-                self.w_root.label_58.setStyleSheet('border-radius: 14;background-color: rgb(255, 0, 0,120);')
+                self.w_root.label_58.setStyleSheet('border-radius: 14;background-color: rgba(255, 0, 0,120);')
                 self.isEn1064 = False
             elif self.dataBin[4][2] == '1':  # Модуль регенеративного усилителя работает 1064 в норме
                 self.w_root.label_58.setText('В норме')
-                self.w_root.label_58.setStyleSheet('border-radius: 14;background-color: rgb(25, 255, 0, 100);')
+                self.w_root.label_58.setStyleSheet('border-radius: 14;background-color: rgba(25, 255, 0, 100);')
                 self.isEn1064 = True
 
             if self.dataBin[4][1] == '0':  # Модуль регенеративного усилителя не работает или 532  не в норме
                 self.w_root.label_59.setText('Не в норме')
-                self.w_root.label_59.setStyleSheet('border-radius: 14;background-color: rgb(255, 0, 0,120);')
+                self.w_root.label_59.setStyleSheet('border-radius: 14;background-color: rgba(255, 0, 0,120);')
                 self.isEn532 = False
             elif self.dataBin[4][1] == '1':  # Модуль регенеративного усилителя работает 532 в норме
                 self.w_root.label_59.setText('В норме')
-                self.w_root.label_59.setStyleSheet('border-radius: 14;background-color: rgb(25, 255, 0, 100);')
+                self.w_root.label_59.setStyleSheet('border-radius: 14;background-color: rgba(25, 255, 0, 100);')
                 self.isEn532 = True
 
             if self.isEn532 and self.isEn1064:
@@ -397,7 +435,7 @@ class App(QWidget):
             # -------------------------------------------------------------------#
 
             if self.dataBin[5][7] == '0':  # Модуль накачки 1 не готов
-                self.w_root.label_8.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_8.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[5][7] == '1':  # Модуль накачки 1 готов
                 self.w_root.label_8.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -412,7 +450,7 @@ class App(QWidget):
                 self.w_root.label_9.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
             if self.dataBin[5][4] == '0':  # Модуль накачки 2 не готов
-                self.w_root.label_12.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_12.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[5][4] == '1':  # Модуль накачки 2 готов
                 self.w_root.label_12.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -443,7 +481,7 @@ class App(QWidget):
             # -------------------------------------------------------------------#
 
             if self.dataBin[4][7] == '0':  # Термоконтроллер АЭ не готов
-                self.w_root.label_71.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_71.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[4][7] == '1':  # Термоконтроллер АЭ готов
                 self.w_root.label_71.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -455,7 +493,7 @@ class App(QWidget):
             # Добавил Егоров Петр
 
             if self.dataBin[4][5] == '0':  # Термоконтроллер ГВГ не готов
-                self.w_root.label_73.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_73.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[4][5] == '1':  # Термоконтроллер ГВГ готов
                 self.w_root.label_73.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -469,7 +507,7 @@ class App(QWidget):
             # -------------------------------------------------------------------#
 
             if self.dataBin[5][7] == '0':  # Термоконтроллер LD1 не готов
-                self.w_root.label_60.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_60.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[5][7] == '1':  # Термоконтроллер LD1 готов
                 self.w_root.label_60.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -489,7 +527,7 @@ class App(QWidget):
                 self.w_root.label_66.setPixmap(QPixmap(self.ICON_BLUE_LED))
 
             if self.dataBin[5][3] == '0':  # Термоконтроллер LD2 не готов
-                self.w_root.label_80.setPixmap(QPixmap(self.ICON_RED_LED))
+                self.w_root.label_80.setPixmap(QPixmap(self.ICON_BLUE_LED))
             elif self.dataBin[5][3] == '1':  # Термоконтроллер LD2 готов
                 self.w_root.label_80.setPixmap(QPixmap(self.ICON_GREEN_LED))
 
@@ -513,12 +551,12 @@ class SendRepeat(QThread):
     out_signal = pyqtSignal(tuple)
     checkCon = pyqtSignal(bool)
 
-    def __init__(self, myIp):
+    def __init__(self, ip, my_ip, port):
         QThread.__init__(self)
         self.tx = ''
-        self.ip = '__init__'
-        self.port = ''
-        self.my_ip = myIp
+        self.ip = ip
+        self.port = port
+        self.my_ip = my_ip
 
         self.wait_for_send = False
 
@@ -526,10 +564,11 @@ class SendRepeat(QThread):
         self.running = True
         adr = (self.ip, self.port)
         udp_socket = socket(AF_INET, SOCK_DGRAM)
-        udp_socket.bind(('169.254.107.93', self.port))
+        udp_socket.bind((self.my_ip, self.port))
         udp_socket.settimeout(0.2)
         clck = 0
         print(self.my_ip)
+
 
         while self.running:
             self.msleep(1)

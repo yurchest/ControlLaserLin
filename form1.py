@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.tab.setObjectName("tab")
         self.frame_4 = QtWidgets.QFrame(self.tab)
         self.frame_4.setGeometry(QtCore.QRect(620, 150, 281, 291))
-        self.frame_4.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_4.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_28.setFont(font)
-        self.label_28.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_28.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_28.setAlignment(QtCore.Qt.AlignCenter)
         self.label_28.setObjectName("label_28")
         self.verticalLayout_4.addWidget(self.label_28)
@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_29.setFont(font)
-        self.label_29.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_29.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_29.setAlignment(QtCore.Qt.AlignCenter)
         self.label_29.setObjectName("label_29")
         self.verticalLayout_4.addWidget(self.label_29)
@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_30.setFont(font)
-        self.label_30.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_30.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_30.setAlignment(QtCore.Qt.AlignCenter)
         self.label_30.setObjectName("label_30")
         self.verticalLayout_4.addWidget(self.label_30)
@@ -110,12 +110,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_20.setFont(font)
-        self.label_20.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_20.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_20.setAlignment(QtCore.Qt.AlignCenter)
         self.label_20.setObjectName("label_20")
         self.frame = QtWidgets.QFrame(self.tab)
         self.frame.setGeometry(QtCore.QRect(20, 150, 281, 291))
-        self.frame.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -151,7 +151,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_4.setFont(font)
-        self.label_4.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_4.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.verticalLayout.addWidget(self.label_4)
@@ -163,7 +163,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_6.setFont(font)
-        self.label_6.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_6.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setObjectName("label_6")
         self.verticalLayout.addWidget(self.label_6)
@@ -175,7 +175,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_5.setFont(font)
-        self.label_5.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_5.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.verticalLayout.addWidget(self.label_5)
@@ -188,12 +188,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_7.setFont(font)
-        self.label_7.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_7.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_7.setAlignment(QtCore.Qt.AlignCenter)
         self.label_7.setObjectName("label_7")
         self.frame_6 = QtWidgets.QFrame(self.tab)
         self.frame_6.setGeometry(QtCore.QRect(920, 150, 281, 291))
-        self.frame_6.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_6.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -229,7 +229,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_49.setFont(font)
-        self.label_49.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_49.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_49.setAlignment(QtCore.Qt.AlignCenter)
         self.label_49.setObjectName("label_49")
         self.verticalLayout_6.addWidget(self.label_49)
@@ -241,7 +241,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_50.setFont(font)
-        self.label_50.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_50.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_50.setAlignment(QtCore.Qt.AlignCenter)
         self.label_50.setObjectName("label_50")
         self.verticalLayout_6.addWidget(self.label_50)
@@ -253,7 +253,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_51.setFont(font)
-        self.label_51.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_51.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_51.setAlignment(QtCore.Qt.AlignCenter)
         self.label_51.setObjectName("label_51")
         self.verticalLayout_6.addWidget(self.label_51)
@@ -266,7 +266,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_21.setFont(font)
-        self.label_21.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_21.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_21.setAlignment(QtCore.Qt.AlignCenter)
         self.label_21.setObjectName("label_21")
         self.pushButton = QtWidgets.QPushButton(self.tab)
@@ -280,14 +280,14 @@ class Ui_MainWindow(object):
         self.pushButton.setFont(font)
         self.pushButton.setStyleSheet("#pushButton{\n"
 "border-radius: 16;\n"
-"background-color: rgb(135, 212, 157,220);\n"
+"background-color: rgba(135, 212, 157,220);\n"
 "}\n"
 "\n"
 "#pushButton:hover {\n"
-"    background-color: rgb(135, 212, 157,150);\n"
+"    background-color: rgba(135, 212, 157,150);\n"
 "}\n"
 "#pushButton:pressed {\n"
-"    background-color: rgb(135, 212, 157,80);\n"
+"    background-color: rgba(135, 212, 157,80);\n"
 "}\n"
 "\n"
 "")
@@ -319,14 +319,14 @@ class Ui_MainWindow(object):
         self.pushButton_2.setFont(font)
         self.pushButton_2.setStyleSheet("#pushButton_2{\n"
 "border-radius: 16;\n"
-"background-color: rgb(0, 85, 255,140);\n"
+"background-color: rgba(0, 85, 255,140);\n"
 "}\n"
 "#pushButton_2:hover {\n"
-"    background-color: rgb(0, 85, 255,120);\n"
+"    background-color: rgba(0, 85, 255,120);\n"
 "}\n"
 "\n"
 "#pushButton_2:pressed {\n"
-"    background-color: rgb(0, 85, 255,80);\n"
+"    background-color: rgba(0, 85, 255,80);\n"
 "}\n"
 "\n"
 "\n"
@@ -336,7 +336,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.frame_2 = QtWidgets.QFrame(self.tab)
         self.frame_2.setGeometry(QtCore.QRect(320, 150, 281, 291))
-        self.frame_2.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_2.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -372,7 +372,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_14.setFont(font)
-        self.label_14.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_14.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_14.setAlignment(QtCore.Qt.AlignCenter)
         self.label_14.setObjectName("label_14")
         self.verticalLayout_2.addWidget(self.label_14)
@@ -384,7 +384,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_15.setFont(font)
-        self.label_15.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_15.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_15.setAlignment(QtCore.Qt.AlignCenter)
         self.label_15.setObjectName("label_15")
         self.verticalLayout_2.addWidget(self.label_15)
@@ -408,7 +408,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_17.setFont(font)
-        self.label_17.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_17.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_17.setAlignment(QtCore.Qt.AlignCenter)
         self.label_17.setObjectName("label_17")
         self.textEdit_1 = QtWidgets.QTextEdit(self.tab)
@@ -416,12 +416,12 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.textEdit_1.setFont(font)
-        self.textEdit_1.setStyleSheet("background-color: rgb(135, 212, 157,100); border-radius: 25%\n"
+        self.textEdit_1.setStyleSheet("background-color: rgba(135, 212, 157,100); border-radius: 25%\n"
 "")
         self.textEdit_1.setObjectName("textEdit_1")
         self.frame_12 = QtWidgets.QFrame(self.tab)
         self.frame_12.setGeometry(QtCore.QRect(20, 460, 371, 181))
-        self.frame_12.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_12.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_12.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_12.setObjectName("frame_12")
@@ -434,7 +434,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_96.setFont(font)
-        self.label_96.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_96.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_96.setAlignment(QtCore.Qt.AlignCenter)
         self.label_96.setObjectName("label_96")
         self.label_41 = QtWidgets.QLabel(self.frame_12)
@@ -452,7 +452,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_52.setFont(font)
-        self.label_52.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_52.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_52.setAlignment(QtCore.Qt.AlignCenter)
         self.label_52.setObjectName("label_52")
         self.label_55 = QtWidgets.QLabel(self.frame_12)
@@ -464,7 +464,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_55.setFont(font)
-        self.label_55.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20\n"
+        self.label_55.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20\n"
 "\n"
 "")
         self.label_55.setAlignment(QtCore.Qt.AlignCenter)
@@ -480,15 +480,15 @@ class Ui_MainWindow(object):
         self.pushButton_3.setFont(font)
         self.pushButton_3.setStyleSheet("#pushButton_3{\n"
 "border-radius: 16;\n"
-"background-color: rgb(0, 85, 255,140);\n"
+"background-color: rgba(0, 85, 255,140);\n"
 "}\n"
 "\n"
 "#pushButton_3:hover{\n"
-"    background-color: rgb(0, 85, 255,120);\n"
+"    background-color: rgba(0, 85, 255,120);\n"
 "}\n"
 "\n"
 "#pushButton_3:pressed {\n"
-"    background-color: rgb(0, 85, 255,100);\n"
+"    background-color: rgba(0, 85, 255,100);\n"
 "}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.label = QtWidgets.QLabel(self.tab)
@@ -504,7 +504,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.frame_3 = QtWidgets.QFrame(self.tab)
         self.frame_3.setGeometry(QtCore.QRect(340, 10, 281, 81))
-        self.frame_3.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_3.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
@@ -517,13 +517,13 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_39.setFont(font)
-        self.label_39.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_39.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_39.setAlignment(QtCore.Qt.AlignCenter)
         self.label_39.setObjectName("label_39")
         self.frame_17 = QtWidgets.QFrame(self.frame_3)
         self.frame_17.setGeometry(QtCore.QRect(180, 10, 101, 61))
         self.frame_17.setStyleSheet(" border-radius: 30;\n"
-"background-color: rgb(83, 100, 255,100);\n"
+"background-color: rgba(83, 100, 255,100);\n"
 "")
         self.frame_17.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_17.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -537,11 +537,11 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_37.setFont(font)
-        self.label_37.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_37.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_37.setObjectName("label_37")
         self.frame_5 = QtWidgets.QFrame(self.tab)
         self.frame_5.setGeometry(QtCore.QRect(930, 10, 271, 121))
-        self.frame_5.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_5.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
@@ -571,7 +571,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_42.setFont(font)
-        self.label_42.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_42.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_42.setAlignment(QtCore.Qt.AlignCenter)
         self.label_42.setObjectName("label_42")
         self.verticalLayout_3.addWidget(self.label_42)
@@ -583,13 +583,13 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_43.setFont(font)
-        self.label_43.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_43.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_43.setAlignment(QtCore.Qt.AlignCenter)
         self.label_43.setObjectName("label_43")
         self.verticalLayout_3.addWidget(self.label_43)
         self.frame_7 = QtWidgets.QFrame(self.tab)
         self.frame_7.setGeometry(QtCore.QRect(920, 460, 281, 81))
-        self.frame_7.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_7.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_7.setObjectName("frame_7")
@@ -602,7 +602,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_53.setFont(font)
-        self.label_53.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_53.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_53.setAlignment(QtCore.Qt.AlignCenter)
         self.label_53.setObjectName("label_53")
         self.label_54 = QtWidgets.QLabel(self.frame_7)
@@ -614,12 +614,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_54.setFont(font)
-        self.label_54.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_54.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_54.setAlignment(QtCore.Qt.AlignCenter)
         self.label_54.setObjectName("label_54")
         self.frame_16 = QtWidgets.QFrame(self.tab)
         self.frame_16.setGeometry(QtCore.QRect(650, 20, 271, 101))
-        self.frame_16.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_16.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_16.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_16.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_16.setObjectName("frame_16")
@@ -632,7 +632,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_18.setFont(font)
-        self.label_18.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_18.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_18.setObjectName("label_18")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_16)
         self.pushButton_8.setGeometry(QtCore.QRect(10, 50, 111, 41))
@@ -645,15 +645,15 @@ class Ui_MainWindow(object):
         self.pushButton_8.setFont(font)
         self.pushButton_8.setStyleSheet("#pushButton_8{\n"
 "border-radius: 16;\n"
-"background-color: rgb(0, 85, 255,140);\n"
+"background-color: rgba(0, 85, 255,140);\n"
 "}\n"
 "\n"
 "#pushButton_8:hover{\n"
-"    background-color: rgb(0, 85, 255,120);\n"
+"    background-color: rgba(0, 85, 255,120);\n"
 "}\n"
 "\n"
 "#pushButton_8:pressed {\n"
-"    background-color: rgb(0, 85, 255,100);\n"
+"    background-color: rgba(0, 85, 255,100);\n"
 "}")
         self.pushButton_8.setObjectName("pushButton_8")
         self.pushButton_10 = QtWidgets.QPushButton(self.frame_16)
@@ -667,15 +667,15 @@ class Ui_MainWindow(object):
         self.pushButton_10.setFont(font)
         self.pushButton_10.setStyleSheet("#pushButton_10{\n"
 "border-radius: 16;\n"
-"background-color: rgb(0, 85, 255,140);\n"
+"background-color: rgba(0, 85, 255,140);\n"
 "}\n"
 "\n"
 "#pushButton_10:hover{\n"
-"    background-color: rgb(0, 85, 255,120);\n"
+"    background-color: rgba(0, 85, 255,120);\n"
 "}\n"
 "\n"
 "#pushButton_10:pressed {\n"
-"    background-color: rgb(0, 85, 255,100);\n"
+"    background-color: rgba(0, 85, 255,100);\n"
 "}")
         self.pushButton_10.setObjectName("pushButton_10")
         self.pushButton_5 = QtWidgets.QPushButton(self.tab)
@@ -689,14 +689,14 @@ class Ui_MainWindow(object):
         self.pushButton_5.setFont(font)
         self.pushButton_5.setStyleSheet("#pushButton_5{\n"
 "border-radius: 12;\n"
-"background-color: rgb(0, 85, 255,60);\n"
+"background-color: rgba(0, 85, 255,60);\n"
 "}\n"
 "\n"
 "#pushButton_5:hover {\n"
-"    background-color: rgb(0, 85, 255,40);\n"
+"    background-color: rgba(0, 85, 255,40);\n"
 "}\n"
 "#pushButton_5:pressed {\n"
-"    background-color: rgb(0, 85, 255,20);\n"
+"    background-color: rgba(0, 85, 255,20);\n"
 "}\n"
 "\n"
 "\n"
@@ -705,7 +705,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.setObjectName("pushButton_5")
         self.frame_18 = QtWidgets.QFrame(self.tab)
         self.frame_18.setGeometry(QtCore.QRect(20, 650, 371, 161))
-        self.frame_18.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_18.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_18.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_18.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_18.setObjectName("frame_18")
@@ -718,7 +718,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_98.setFont(font)
-        self.label_98.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_98.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_98.setAlignment(QtCore.Qt.AlignCenter)
         self.label_98.setObjectName("label_98")
         self.label_40 = QtWidgets.QLabel(self.frame_18)
@@ -730,7 +730,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_40.setFont(font)
-        self.label_40.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_40.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_40.setAlignment(QtCore.Qt.AlignCenter)
         self.label_40.setObjectName("label_40")
         self.label_57 = QtWidgets.QLabel(self.frame_18)
@@ -742,7 +742,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_57.setFont(font)
-        self.label_57.setStyleSheet("background-color: rgb(135, 212, 157,0); border-radius: 20")
+        self.label_57.setStyleSheet("background-color: rgba(135, 212, 157,0); border-radius: 20")
         self.label_57.setAlignment(QtCore.Qt.AlignCenter)
         self.label_57.setObjectName("label_57")
         self.label_58 = QtWidgets.QLabel(self.frame_18)
@@ -754,7 +754,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_58.setFont(font)
-        self.label_58.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_58.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_58.setAlignment(QtCore.Qt.AlignCenter)
         self.label_58.setObjectName("label_58")
         self.label_59 = QtWidgets.QLabel(self.frame_18)
@@ -766,7 +766,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_59.setFont(font)
-        self.label_59.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_59.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_59.setAlignment(QtCore.Qt.AlignCenter)
         self.label_59.setObjectName("label_59")
         self.pushButton_7 = QtWidgets.QPushButton(self.tab)
@@ -780,14 +780,14 @@ class Ui_MainWindow(object):
         self.pushButton_7.setFont(font)
         self.pushButton_7.setStyleSheet("#pushButton_7{\n"
 "border-radius: 12;\n"
-"background-color: rgb(0, 85, 255,60);\n"
+"background-color: rgba(0, 85, 255,60);\n"
 "}\n"
 "\n"
 "#pushButton_7:hover {\n"
-"    background-color: rgb(0, 85, 255,40);\n"
+"    background-color: rgba(0, 85, 255,40);\n"
 "}\n"
 "#pushButton_7:pressed {\n"
-"    background-color: rgb(0, 85, 255,20);\n"
+"    background-color: rgba(0, 85, 255,20);\n"
 "}\n"
 "\n"
 "\n"
@@ -803,7 +803,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_63.setFont(font)
-        self.label_63.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.label_63.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.label_63.setAlignment(QtCore.Qt.AlignCenter)
         self.label_63.setObjectName("label_63")
         self.lineEdit = QtWidgets.QLineEdit(self.tab)
@@ -815,7 +815,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.lineEdit.setFont(font)
-        self.lineEdit.setStyleSheet("background-color: rgb(135, 212, 157,130); border-radius: 10")
+        self.lineEdit.setStyleSheet("background-color: rgba(135, 212, 157,130); border-radius: 10")
         self.lineEdit.setObjectName("lineEdit")
         self.label_19 = QtWidgets.QLabel(self.tab)
         self.label_19.setGeometry(QtCore.QRect(0, 60, 101, 16))
@@ -846,7 +846,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.lineEdit_2.setFont(font)
-        self.lineEdit_2.setStyleSheet("background-color: rgb(135, 212, 157,130); border-radius: 10")
+        self.lineEdit_2.setStyleSheet("background-color: rgba(135, 212, 157,130); border-radius: 10")
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.pushButton_9 = QtWidgets.QPushButton(self.tab)
         self.pushButton_9.setGeometry(QtCore.QRect(250, 110, 51, 31))
@@ -859,15 +859,15 @@ class Ui_MainWindow(object):
         self.pushButton_9.setFont(font)
         self.pushButton_9.setStyleSheet("#pushButton_9{\n"
 "border-radius: 15;\n"
-"background-color: rgb(0, 85, 255,140);\n"
+"background-color: rgba(0, 85, 255,140);\n"
 "}\n"
 "\n"
 "#pushButton_9:hover{\n"
-"    background-color: rgb(0, 85, 255,120);\n"
+"    background-color: rgba(0, 85, 255,120);\n"
 "}\n"
 "\n"
 "#pushButton_9:pressed {\n"
-"    background-color: rgb(0, 85, 255,100);\n"
+"    background-color: rgba(0, 85, 255,100);\n"
 "}")
         self.pushButton_9.setObjectName("pushButton_9")
         self.tabWidget.addTab(self.tab, "")
@@ -875,7 +875,7 @@ class Ui_MainWindow(object):
         self.tab_2.setObjectName("tab_2")
         self.frame_8 = QtWidgets.QFrame(self.tab_2)
         self.frame_8.setGeometry(QtCore.QRect(10, 70, 351, 341))
-        self.frame_8.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 70px")
+        self.frame_8.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 70px")
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
@@ -888,33 +888,33 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_56.setFont(font)
-        self.label_56.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 20px")
+        self.label_56.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 20px")
         self.label_56.setAlignment(QtCore.Qt.AlignCenter)
         self.label_56.setObjectName("label_56")
         self.label_60 = QtWidgets.QLabel(self.frame_8)
         self.label_60.setGeometry(QtCore.QRect(300, 70, 41, 41))
-        self.label_60.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_60.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_60.setText("")
         self.label_60.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_60.setScaledContents(True)
         self.label_60.setObjectName("label_60")
         self.label_61 = QtWidgets.QLabel(self.frame_8)
         self.label_61.setGeometry(QtCore.QRect(300, 130, 41, 41))
-        self.label_61.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_61.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_61.setText("")
         self.label_61.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_61.setScaledContents(True)
         self.label_61.setObjectName("label_61")
         self.label_62 = QtWidgets.QLabel(self.frame_8)
         self.label_62.setGeometry(QtCore.QRect(300, 190, 41, 41))
-        self.label_62.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_62.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_62.setText("")
         self.label_62.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_62.setScaledContents(True)
         self.label_62.setObjectName("label_62")
         self.label_66 = QtWidgets.QLabel(self.frame_8)
         self.label_66.setGeometry(QtCore.QRect(300, 250, 41, 41))
-        self.label_66.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_66.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_66.setText("")
         self.label_66.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_66.setScaledContents(True)
@@ -933,7 +933,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_85.setFont(font)
-        self.label_85.setStyleSheet("background-color: rgb(135, 212, 157,220);;border-radius: 20\n"
+        self.label_85.setStyleSheet("background-color: rgba(135, 212, 157,220);;border-radius: 20\n"
 "")
         self.label_85.setAlignment(QtCore.Qt.AlignCenter)
         self.label_85.setObjectName("label_85")
@@ -946,7 +946,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_86.setFont(font)
-        self.label_86.setStyleSheet("background-color: rgb(135, 212, 157,220);;border-radius: 20\n"
+        self.label_86.setStyleSheet("background-color: rgba(135, 212, 157,220);;border-radius: 20\n"
 "")
         self.label_86.setAlignment(QtCore.Qt.AlignCenter)
         self.label_86.setObjectName("label_86")
@@ -970,14 +970,14 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_88.setFont(font)
-        self.label_88.setStyleSheet("background-color: rgb(135, 212, 157,220);;border-radius: 20\n"
+        self.label_88.setStyleSheet("background-color: rgba(135, 212, 157,220);;border-radius: 20\n"
 "")
         self.label_88.setAlignment(QtCore.Qt.AlignCenter)
         self.label_88.setObjectName("label_88")
         self.verticalLayout_8.addWidget(self.label_88)
         self.frame_9 = QtWidgets.QFrame(self.tab_2)
         self.frame_9.setGeometry(QtCore.QRect(760, 70, 451, 341))
-        self.frame_9.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 70px")
+        self.frame_9.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 70px")
         self.frame_9.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_9.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_9.setObjectName("frame_9")
@@ -990,19 +990,19 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_67.setFont(font)
-        self.label_67.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 20px")
+        self.label_67.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 20px")
         self.label_67.setAlignment(QtCore.Qt.AlignCenter)
         self.label_67.setObjectName("label_67")
         self.label_71 = QtWidgets.QLabel(self.frame_9)
         self.label_71.setGeometry(QtCore.QRect(380, 70, 41, 41))
-        self.label_71.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_71.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_71.setText("")
         self.label_71.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_71.setScaledContents(True)
         self.label_71.setObjectName("label_71")
         self.label_72 = QtWidgets.QLabel(self.frame_9)
         self.label_72.setGeometry(QtCore.QRect(380, 130, 41, 41))
-        self.label_72.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_72.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_72.setText("")
         self.label_72.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_72.setScaledContents(True)
@@ -1021,7 +1021,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_89.setFont(font)
-        self.label_89.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_89.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 "")
         self.label_89.setAlignment(QtCore.Qt.AlignCenter)
         self.label_89.setObjectName("label_89")
@@ -1034,7 +1034,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_90.setFont(font)
-        self.label_90.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_90.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 "")
         self.label_90.setAlignment(QtCore.Qt.AlignCenter)
         self.label_90.setObjectName("label_90")
@@ -1058,21 +1058,21 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_92.setFont(font)
-        self.label_92.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_92.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 "")
         self.label_92.setAlignment(QtCore.Qt.AlignCenter)
         self.label_92.setObjectName("label_92")
         self.verticalLayout_9.addWidget(self.label_92)
         self.label_73 = QtWidgets.QLabel(self.frame_9)
         self.label_73.setGeometry(QtCore.QRect(380, 190, 41, 41))
-        self.label_73.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_73.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_73.setText("")
         self.label_73.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_73.setScaledContents(True)
         self.label_73.setObjectName("label_73")
         self.label_74 = QtWidgets.QLabel(self.frame_9)
         self.label_74.setGeometry(QtCore.QRect(380, 250, 41, 41))
-        self.label_74.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_74.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_74.setText("")
         self.label_74.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_74.setScaledContents(True)
@@ -1080,7 +1080,7 @@ class Ui_MainWindow(object):
         self.frame_19 = QtWidgets.QFrame(self.frame_9)
         self.frame_19.setGeometry(QtCore.QRect(0, 80, 81, 81))
         self.frame_19.setStyleSheet(" border-radius: 40;\n"
-"background-color: rgb(83, 100, 255,100);\n"
+"background-color: rgba(83, 100, 255,100);\n"
 "")
         self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1094,12 +1094,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_38.setFont(font)
-        self.label_38.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_38.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_38.setObjectName("label_38")
         self.frame_20 = QtWidgets.QFrame(self.frame_9)
         self.frame_20.setGeometry(QtCore.QRect(0, 200, 81, 81))
         self.frame_20.setStyleSheet(" border-radius: 40;\n"
-"background-color: rgb(83, 100, 255,100);\n"
+"background-color: rgba(83, 100, 255,100);\n"
 "")
         self.frame_20.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1113,11 +1113,11 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_64.setFont(font)
-        self.label_64.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_64.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_64.setObjectName("label_64")
         self.frame_10 = QtWidgets.QFrame(self.tab_2)
         self.frame_10.setGeometry(QtCore.QRect(370, 70, 351, 341))
-        self.frame_10.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 70px")
+        self.frame_10.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 70px")
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
@@ -1130,33 +1130,33 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_76.setFont(font)
-        self.label_76.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 20px")
+        self.label_76.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 20px")
         self.label_76.setAlignment(QtCore.Qt.AlignCenter)
         self.label_76.setObjectName("label_76")
         self.label_80 = QtWidgets.QLabel(self.frame_10)
         self.label_80.setGeometry(QtCore.QRect(300, 70, 41, 41))
-        self.label_80.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_80.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_80.setText("")
         self.label_80.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_80.setScaledContents(True)
         self.label_80.setObjectName("label_80")
         self.label_81 = QtWidgets.QLabel(self.frame_10)
         self.label_81.setGeometry(QtCore.QRect(300, 130, 41, 41))
-        self.label_81.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_81.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_81.setText("")
         self.label_81.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_81.setScaledContents(True)
         self.label_81.setObjectName("label_81")
         self.label_82 = QtWidgets.QLabel(self.frame_10)
         self.label_82.setGeometry(QtCore.QRect(300, 190, 41, 41))
-        self.label_82.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_82.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_82.setText("")
         self.label_82.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_82.setScaledContents(True)
         self.label_82.setObjectName("label_82")
         self.label_84 = QtWidgets.QLabel(self.frame_10)
         self.label_84.setGeometry(QtCore.QRect(300, 250, 41, 41))
-        self.label_84.setStyleSheet("background-color: rgb(135, 212, 157,0);; border-radius: 15px")
+        self.label_84.setStyleSheet("background-color: rgba(135, 212, 157,0);; border-radius: 15px")
         self.label_84.setText("")
         self.label_84.setPixmap(QtGui.QPixmap(":/newPrefix/png/blue-led-on.png"))
         self.label_84.setScaledContents(True)
@@ -1175,7 +1175,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_78.setFont(font)
-        self.label_78.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_78.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 "")
         self.label_78.setAlignment(QtCore.Qt.AlignCenter)
         self.label_78.setObjectName("label_78")
@@ -1188,7 +1188,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_79.setFont(font)
-        self.label_79.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_79.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 "")
         self.label_79.setAlignment(QtCore.Qt.AlignCenter)
         self.label_79.setObjectName("label_79")
@@ -1212,7 +1212,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_83.setFont(font)
-        self.label_83.setStyleSheet("background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_83.setStyleSheet("background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 "")
         self.label_83.setAlignment(QtCore.Qt.AlignCenter)
         self.label_83.setObjectName("label_83")
@@ -1239,22 +1239,22 @@ class Ui_MainWindow(object):
         self.pushButton_4.setFont(font)
         self.pushButton_4.setStyleSheet("#pushButton_4{\n"
 "border-radius: 16;\n"
-"background-color: rgb(0, 85, 255,140);\n"
+"background-color: rgba(0, 85, 255,140);\n"
 "}\n"
 "\n"
 "#pushButton_4:hover {\n"
-"    background-color: rgb(0, 85, 255,120);\n"
+"    background-color: rgba(0, 85, 255,120);\n"
 "}\n"
 "\n"
 "#pushButton_4:pressed {\n"
-"    background-color: rgb(0, 85, 255,100);\n"
+"    background-color: rgba(0, 85, 255,100);\n"
 "}\n"
 "\n"
 "")
         self.pushButton_4.setObjectName("pushButton_4")
         self.frame_11 = QtWidgets.QFrame(self.tab_2)
         self.frame_11.setGeometry(QtCore.QRect(50, 560, 531, 81))
-        self.frame_11.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_11.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_11.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_11.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_11.setObjectName("frame_11")
@@ -1267,12 +1267,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_33.setFont(font)
-        self.label_33.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_33.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_33.setObjectName("label_33")
         self.frame_13 = QtWidgets.QFrame(self.frame_11)
         self.frame_13.setGeometry(QtCore.QRect(400, 0, 101, 81))
         self.frame_13.setStyleSheet(" border-radius: 40;\n"
-"background-color: rgb(83, 100, 255,100);\n"
+"background-color: rgba(83, 100, 255,100);\n"
 "")
         self.frame_13.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1286,11 +1286,11 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_34.setFont(font)
-        self.label_34.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_34.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_34.setObjectName("label_34")
         self.frame_14 = QtWidgets.QFrame(self.tab_2)
         self.frame_14.setGeometry(QtCore.QRect(50, 660, 531, 81))
-        self.frame_14.setStyleSheet("background-color: rgb(135, 212, 157,220); border-radius: 20")
+        self.frame_14.setStyleSheet("background-color: rgba(135, 212, 157,220); border-radius: 20")
         self.frame_14.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_14.setObjectName("frame_14")
@@ -1303,12 +1303,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_35.setFont(font)
-        self.label_35.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_35.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_35.setObjectName("label_35")
         self.frame_15 = QtWidgets.QFrame(self.frame_14)
         self.frame_15.setGeometry(QtCore.QRect(400, 0, 101, 81))
         self.frame_15.setStyleSheet(" border-radius: 40;\n"
-"background-color: rgb(83, 100, 255,100);\n"
+"background-color: rgba(83, 100, 255,100);\n"
 "")
         self.frame_15.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_15.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1322,14 +1322,14 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
         self.label_36.setFont(font)
-        self.label_36.setStyleSheet("background-color: rgb(135, 212, 157,0)")
+        self.label_36.setStyleSheet("background-color: rgba(135, 212, 157,0)")
         self.label_36.setObjectName("label_36")
         self.textEdit_2 = QtWidgets.QTextEdit(self.tab_2)
         self.textEdit_2.setGeometry(QtCore.QRect(640, 470, 451, 291))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.textEdit_2.setFont(font)
-        self.textEdit_2.setStyleSheet("background-color: rgb(135, 212, 157,100); border-radius: 25%\n"
+        self.textEdit_2.setStyleSheet("background-color: rgba(135, 212, 157,100); border-radius: 25%\n"
 "")
         self.textEdit_2.setObjectName("textEdit_2")
         self.pushButton_6 = QtWidgets.QPushButton(self.tab_2)
@@ -1343,16 +1343,16 @@ class Ui_MainWindow(object):
         self.pushButton_6.setFont(font)
         self.pushButton_6.setStyleSheet("#pushButton_6{\n"
 "border-radius: 12;\n"
-"background-color: rgb(0, 85, 255,60);\n"
+"background-color: rgba(0, 85, 255,60);\n"
 "}\n"
 "\n"
 "#pushButton_6:hover {\n"
-"    background-color: rgb(0, 85, 255,40);\n"
+"    background-color: rgba(0, 85, 255,40);\n"
 "}\n"
 "\n"
 "\n"
 "#pushButton_6:pressed {\n"
-"    background-color: rgb(0, 85, 255,20);\n"
+"    background-color: rgba(0, 85, 255,20);\n"
 "}\n"
 "\n"
 "")
@@ -1438,14 +1438,14 @@ class Ui_MainWindow(object):
         self.label_56.setText(_translate("MainWindow", "Термоконтроллер LD1"))
         self.label_85.setText(_translate("MainWindow", "Готов"))
         self.label_86.setText(_translate("MainWindow", "Ошибка"))
-        self.label_87.setStyleSheet(_translate("MainWindow", "background-color: rgb(135, 212, 157,220);;border-radius: 20\n"
+        self.label_87.setStyleSheet(_translate("MainWindow", "background-color: rgba(135, 212, 157,220);;border-radius: 20\n"
 ""))
         self.label_87.setText(_translate("MainWindow", "МН1 Работа"))
         self.label_88.setText(_translate("MainWindow", "Ошибка драйвера тока"))
         self.label_67.setText(_translate("MainWindow", "Термоконтроллеры"))
         self.label_89.setText(_translate("MainWindow", "Готов"))
         self.label_90.setText(_translate("MainWindow", "Ошибка"))
-        self.label_91.setStyleSheet(_translate("MainWindow", "background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_91.setStyleSheet(_translate("MainWindow", "background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 ""))
         self.label_91.setText(_translate("MainWindow", "Готов"))
         self.label_92.setText(_translate("MainWindow", "Ошибка"))
@@ -1454,7 +1454,7 @@ class Ui_MainWindow(object):
         self.label_76.setText(_translate("MainWindow", "Термоконтроллер LD2"))
         self.label_78.setText(_translate("MainWindow", "Готов"))
         self.label_79.setText(_translate("MainWindow", "Ошибка"))
-        self.label_77.setStyleSheet(_translate("MainWindow", "background-color: rgb(135, 212, 157,220);; border-radius: 20\n"
+        self.label_77.setStyleSheet(_translate("MainWindow", "background-color: rgba(135, 212, 157,220);; border-radius: 20\n"
 ""))
         self.label_77.setText(_translate("MainWindow", "МН2 Работа"))
         self.label_83.setText(_translate("MainWindow", "Ошибка драйвера тока"))

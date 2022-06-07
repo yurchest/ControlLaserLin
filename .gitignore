@@ -4,3 +4,6 @@ __pycache__/
 *.spec
 /.idea
 venv
+/venv_PC_Work/
+/venv_win1/
+/Compiled
