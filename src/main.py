@@ -81,7 +81,7 @@ class App(QWidget):
         except:
             error = QMessageBox()
             error.setWindowTitle("Ошибка")
-            error.setText("\nНеверно заданы данные в конфигурационном файле 'config.ini' \n\n")
+            error.setText("\nНеверно заданы данные в конфигурационном файле 'GeoInf.ini' \n\n")
             error.setIcon(QMessageBox.Information)
             error.exec()
 
@@ -96,7 +96,7 @@ class App(QWidget):
 
     def read_config(self):
         config = configparser.ConfigParser()
-        config.read('config.ini')
+        config.read('GeoInf.ini')
         self.ip = config["Global"]["UDP_NPORT"]
         self.my_ip = config["Global"]["UDP_SID"]
         self.port = int(config["Global"]["PORT"])
@@ -104,11 +104,11 @@ class App(QWidget):
 
     def write_config(self):
         config = configparser.ConfigParser()
-        config.read('config.ini')
+        config.read('GeoInf.ini')
         config["Global"]["UDP_NPORT"] = self.ip
         config["Global"]["PORT"] = str(self.port)
 
-        with open('config.ini', 'w') as config_file:
+        with open('GeoInf.ini', 'w') as config_file:
             config.write(config_file)
 
     def recieve_data(self, data):
@@ -625,7 +625,7 @@ class SendRepeat(QThread):
 
             except Exception as error:
                 self.out_signal.emit((error, tx_data_type, data_or_merr))
-
+                pass
 
         udp_socket.close()
 
