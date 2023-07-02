@@ -3,4 +3,6 @@ pyqtdeploy-build main.pdt
 cd build-linux-64/
 ../sysroot-linux-64/Qt/bin/qmake
 make -j 8
+cp control ../dist/
+cd ../dist
 staticx --strip control control-compiled

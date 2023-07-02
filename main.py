@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 import socket
 import sys
-from  PyQt5 import QtWidgets
-from  PyQt5 import QtGui
+import os
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtGui import QPixmap, QColor
@@ -10,6 +9,7 @@ from socket import *
 from src.form1 import *
 import src.functions
 import configparser
+
 
 
 class App(QWidget):
@@ -25,7 +25,7 @@ class App(QWidget):
         self.ip = self.w_root.lineEdit.text()
         self.port = int(self.w_root.lineEdit_2.text())
         self.myIp = src.functions.extract_ip()
-
+        self.ini_path = self.get_config_path()
 
         self.startSets()
 
@@ -81,7 +81,7 @@ class App(QWidget):
         except:
             error = QMessageBox()
             error.setWindowTitle("Ошибка")
-            error.setText("\nНеверно заданы данные в конфигурационном файле 'GeoInf.ini' \n\n")
+            error.setText("\nНеверно заданы данные в конфигурационном файле 'GeoInf.ini' или он не существует \n\n")
             error.setIcon(QMessageBox.Information)
             error.exec()
 
@@ -93,10 +93,23 @@ class App(QWidget):
         self.w_root.textEdit_1.setReadOnly(True)
         self.w_root.textEdit_2.setReadOnly(True)
 
+    def get_config_path(self):
+        config_name = 'GeoInf.ini'
+
+        # determine if application is a script file or frozen exe
+        if getattr(sys, 'frozen', False):
+            application_path = os.path.dirname(sys.executable)
+        elif __file__:
+            application_path = os.path.dirname(__file__)
+
+        config_path = config_name
+        # config_path = os.path.join(application_path, config_name)
+        print(f"CONFIG PATH : {config_path}")
+        return config_path
 
     def read_config(self):
         config = configparser.ConfigParser()
-        config.read('GeoInf.ini')
+        config.read(self.ini_path)
         self.ip = config["Global"]["UDP_NPORT"]
         self.my_ip = config["Global"]["UDP_SID"]
         self.port = int(config["Global"]["PORT"])
@@ -104,7 +117,7 @@ class App(QWidget):
 
     def write_config(self):
         config = configparser.ConfigParser()
-        config.read('GeoInf.ini')
+        config.read(self.ini_path)
         config["Global"]["UDP_NPORT"] = self.ip
         config["Global"]["PORT"] = str(self.port)
 
@@ -567,7 +580,7 @@ class SendRepeat(QThread):
         udp_socket.bind((self.my_ip, self.port))
         udp_socket.settimeout(0.2)
         clck = 0
-        print(self.my_ip)
+        print(f"MACHINE IP: {self.my_ip}")
 
 
         while self.running:
