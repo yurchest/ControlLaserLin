@@ -1,0 +1,48 @@
+[zlib]
+install_from_source = false
+
+[Qt]
+version = "5.15.2"
+edition="opensource"
+configure_options=[
+            "-no-dbus", "-no-system-proxies", "-no-cups", "-no-sql-db2",
+            "-no-sql-ibase", "-no-sql-mysql", "-no-sql-sqlite",
+            "-no-sql-sqlite2", "-no-sql-oci", "-no-sql-odbc",
+            "-no-sql-psql", "-no-sql-tds", "-no-sqlite", "-ccache",
+            "-optimize-size", "-xcb", "-xcb-xlib"
+        ]
+skip=[
+            "qt3d", "qtactiveqt", "qtandroidextras", "qtcanvas3d",
+            "qtcharts", "qtconnectivity", "qtdatavis3d", "qtdeclarative",
+            "qtdoc", "qtgamepad", "qtgraphicaleffects", "qtlocation",
+            "qtmacextras", "qtmultimedia", "qtnetworkauth", "qtpurchasing",
+            "qtquickcontrols", "qtquickcontrols2", "qtremoteobjects",
+            "qtscript", "qtscxml", "qtsensors", "qtserialbus",
+            "qtserialport", "qtspeech", "qtsvg", "qttools",
+            "qttranslations", "qtvirtualkeyboard", "qtwayland",
+            "qtwebchannel", "qtwebengine", "qtwebglplugin",
+            "qtwebsockets", "qtwebview", "qtwinextras", "qtx11extras",
+            "qtxmlpatterns"
+        ]
+disabled_features=[
+            "network", "bearermanagement", "dnslookup", "dtls", "ftp",
+            "http", "localserver", "networkdiskcache", "networkinterface",
+            "networkproxy", "socks5", "udpsocket", "concurrent", "future",
+            "cups", "printer", "printdialog", "printpreviewdialog",
+            "printpreviewwidget", "sql", "sqlmodel", "testlib", "xml"
+        ]
+
+[Python]
+version="3.10.12"
+install_host_from_source = true
+
+
+[SIP]
+abi_major_version = 12
+module_name = "PyQt5.sip"
+
+
+[PyQt]
+version = "5.15.9"
+installed_modules=["QtCore", "QtGui", "QtWidgets"]
+

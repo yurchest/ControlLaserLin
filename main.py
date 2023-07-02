@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 import socket
 import sys
+from  PyQt5 import QtWidgets
+from  PyQt5 import QtGui
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtGui import QPixmap, QColor
 from socket import *
-
-from form1 import *
-import functions
-
+from src.form1 import *
+import src.functions
 import configparser
 
 
@@ -16,7 +16,7 @@ class App(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.w2 = QtWidgets.QMainWindow()
-        self.w_root = Ui_MainWindow()
+        self.w_root = src.form1.Ui_MainWindow()
         self.w_root.setupUi(self.w2)
         # self.w_root = uic.loadUi('form1.ui')
         self.w2.setWindowTitle('ControlLaser')
@@ -24,7 +24,7 @@ class App(QWidget):
 
         self.ip = self.w_root.lineEdit.text()
         self.port = int(self.w_root.lineEdit_2.text())
-        self.myIp = functions.extract_ip()
+        self.myIp = src.functions.extract_ip()
 
 
         self.startSets()
@@ -116,18 +116,18 @@ class App(QWidget):
 
             if type(data[0]) != bytes:
                 self.w_root.textEdit.setTextColor(self.redText)
-                self.w_root.textEdit.setText(functions.get_current_time() + 'Error : ' + str(data[0]))
+                self.w_root.textEdit.setText(src.functions.get_current_time() + 'Error : ' + str(data[0]))
                 self.w_root.textEdit.setTextColor(self.blackText)
                 self.w_root.textEdit.append('----------------------------------------------------------------------')
                 self.setDefaults()
 
             elif len(data[0].decode('raw_unicode_escape')) == 2:
                 self.checkMERR(data[0])
-                self.w_root.textEdit.setText(functions.get_current_time() + self.merr)
+                self.w_root.textEdit.setText(src.functions.get_current_time() + self.merr)
                 self.setDefaults()
 
             elif self.checkControlSum(data[0]):
-                self.dataBin = functions.strToBin(data[0])
+                self.dataBin = src.functions.strToBin(data[0])
                 self.w_root.label_63.setText('Control Sum')
                 self.w_root.label_63.setStyleSheet('background-color: rgba(0, 255, 0, 150);border-radius: 20')
 
@@ -138,7 +138,7 @@ class App(QWidget):
                 if data[1] == 'stMOD':
                     self.requestModules = True
                     self.w_root.textEdit.setTextColor(self.greenText)
-                    self.w_root.textEdit.append(functions.get_current_time() + 'Успешное выполнение команды " Статус Модулей " ')
+                    self.w_root.textEdit.append(src.functions.get_current_time() + 'Успешное выполнение команды " Статус Модулей " ')
                     self.w_root.textEdit.setTextColor(self.blackText)
                     self.w_root.textEdit.append(
                         '----------------------------------------------------------------------')
@@ -149,7 +149,7 @@ class App(QWidget):
                 elif data[1] == 'stUSTR':
                     self.requestModules = False
                     self.w_root.textEdit.setTextColor(self.greenText)
-                    self.w_root.textEdit.append(functions.get_current_time() + 'Успешное выполнение команды " Статус Устройств " ')
+                    self.w_root.textEdit.append(src.functions.get_current_time() + 'Успешное выполнение команды " Статус Устройств " ')
                     self.w_root.textEdit.setTextColor(self.blackText)
                     self.w_root.textEdit.append(
                         '----------------------------------------------------------------------')
@@ -172,12 +172,12 @@ class App(QWidget):
 
             if type(data[0]) != bytes:
                 self.w_root.textEdit.setTextColor(self.redText)
-                self.w_root.textEdit.setText(functions.get_current_time() + 'Error : ' + str(data[0]))
+                self.w_root.textEdit.setText(src.functions.get_current_time() + 'Error : ' + str(data[0]))
 
 
             else:
                 self.w_root.textEdit.setTextColor(self.blackText)
-                self.w_root.textEdit.append(functions.get_current_time() + 'Ответ на команду "{0}" :'.format(command))
+                self.w_root.textEdit.append(src.functions.get_current_time() + 'Ответ на команду "{0}" :'.format(command))
                 self.checkMERR(data[0])
                 self.w_root.textEdit.append(self.merr)
 
@@ -251,7 +251,7 @@ class App(QWidget):
         self.SendRepeat.port = self.port
         self.SendRepeat.start()
         self.w_root.textEdit.setTextColor(self.yellowText)
-        self.w_root.textEdit.append(functions.get_current_time() + 'MOXA IP изменен на {}'.format(self.ip))
+        self.w_root.textEdit.append(src.functions.get_current_time() + 'MOXA IP изменен на {}'.format(self.ip))
         self.w_root.textEdit.append('MOXA PORT изменен на {}'.format(self.port))
         self.w_root.textEdit.setTextColor(self.blackText)
         self.w_root.textEdit.append('----------------------------------------------------------------------')
@@ -608,9 +608,9 @@ class SendRepeat(QThread):
                 data_or_merr = 0
 
             try:
-                functions.SendMess(tx, udp_socket, adr)
+                src.functions.SendMess(tx, udp_socket, adr)
                 print('Sent : ', tx)
-                data = functions.ReadMess(udp_socket)[0]
+                data = src.functions.ReadMess(udp_socket)[0]
                 print('RX Repeat : ', data)
                 self.out_signal.emit((data, tx_data_type, data_or_merr))
                 clck = 0

@@ -1,11 +1,15 @@
 /build/
-__pycache__/
+*__pycache__
 /dist
 *.spec
 /.idea
-venv
+/venv*
 /venv_PC_Work/
 /venv_win1/
 /Compiled
 /venv_hp/
 /venv_win/
+/sysroot-linux-64/
+/build-linux-64/
+/main.pdt
+/pkg_sources/
